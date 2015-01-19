@@ -11,30 +11,9 @@
 	ConnectFour.prototype.generateBoard = function() {
 		// make a matrix with 7x0 columns
 		this.cells = [[], [], [], [], [], [], []];
-		var i;
-		
-		// find the table
-		var table = null;
-		
-		for(i = 0; i < this.board.children.length; i++) {
-			if(this.board.children[i].tagName == 'TABLE') {
-				table = this.board.children[i];
-				break;
-			}
-		}
-		
-		// find the tbody
-		var tbody = null;
-		
-		for(i = 0; i < table.children.length; i++) {
-			if(table.children[i].tagName == 'TBODY') {
-				tbody = table.children[i];
-				break;
-			}
-		}
 		
 		// save each TD element in the matrix
-		var rows = tbody.children;
+		var rows = this.board.querySelectorAll('tr');
 		
 		for(var i = 0; i < this.width; i++) {
 			for(var j = 0; j < this.height; j++) {
@@ -57,13 +36,14 @@
 			for(var i = 0; i < self.width; i++) {
 				for(var j = 0; j < self.height; j++) {
 					delete self.cells[i][j].dataset.player;
+					self.cells[i][j].classList.remove('next');
 				}
 			}
-			
-			setTimeout(function() {
-				self.board.classList.remove('emptying');
-			}, 1000);
 		}, 1000);
+		
+		setTimeout(function() {
+			self.board.classList.remove('emptying');
+		}, 2000);
 	};
 	
 	// attaches the mouse event handlers
@@ -94,6 +74,10 @@
 		};
 		
 		this.board.onmouseover = function() {
+			if(this.classList.contains('emptying')) {
+				return;
+			}
+			
 			// find the cell to highlight
 			var target = window.event.target;
 			var highlight = self.findOpenSpaceForTarget.call(self, target);

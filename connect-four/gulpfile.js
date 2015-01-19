@@ -1,0 +1,94 @@
+/*jshint node:true */
+'use strict';
+
+var gulp = require('gulp');
+var $ = require('gulp-load-plugins')();
+var clip = require('gulp-clip-empty-files');
+
+var argv = require('yargs').argv;
+var runSequence = require('run-sequence');
+var browserSync = require('browser-sync');
+var reload = browserSync.reload;
+
+/* Handlers */
+var onError = function(err) {
+	$.notify.onError({
+		title:	"Gulp",
+		subtitle: "Failure!",
+		message:  "Error: <%= error.message %>",
+		sound:	"Sosumi"
+	})(err);
+
+	this.emit('end');
+};
+
+var onHint = function (file) {
+	if (!file.jshint.success) {
+		var errors = file.jshint.results.map(function (data) {
+			if (data.error) {
+				return "(" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
+			}
+		}).join("\n");
+		
+		return file.relative + " (" + file.jshint.results.length + " errors)\n" + errors;
+	}
+};
+
+/* Compile SASS styles */
+gulp.task('styles', function () {
+	return gulp.src(['app/game.scss'])
+		.pipe($.plumber({errorHandler: onError}))
+		.pipe(clip())
+		.pipe($.sass())
+		.pipe($.autoprefixer())
+		.pipe(gulp.dest('dist/'))
+		.pipe(reload({stream:true}));
+});
+
+/* Lint JavaScript */
+gulp.task('scripts', function () {
+	return gulp.src('app/game.js')
+		.pipe($.plumber({errorHandler: onError}))
+		.pipe(clip())
+		.pipe($.jshint())
+		.pipe($.jshint.reporter(require('jshint-stylish')))
+		.pipe($.notify(onHint))
+		.pipe(gulp.dest('dist/'))
+		.pipe(reload({stream:true}));
+});
+
+/* Copy HTML */
+gulp.task('html', function () {
+	return gulp.src('app/**/*.html')
+		.pipe(gulp.dest('dist/'))
+		.pipe(reload({stream:true}));
+});
+
+/* Control tasks */
+
+gulp.task('build', function(cb) {
+	runSequence(['html', 'styles', 'scripts'], cb);
+});
+
+gulp.task('default', function (cb) {
+	runSequence('build', cb);
+});
+
+gulp.task('serve', ['watch'], function () {
+	browserSync({
+		proxy: 'connect4',
+		debugInfo: false,
+		ghostMode: false
+	});
+});
+
+gulp.task('watch', ['build'], function (cb) {
+	gulp.watch('app/**/*.html', ['html']);
+	gulp.watch('app/game.scss', ['styles']);
+	gulp.watch('app/game.js', ['scripts']);
+	
+	if(argv._[0] == 'serve')
+	{
+		cb();
+	}
+});
