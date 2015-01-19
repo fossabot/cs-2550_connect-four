@@ -43,6 +43,7 @@
 		
 		setTimeout(function() {
 			self.board.classList.remove('emptying');
+			self.board.dataset.turn = 'red';
 		}, 2000);
 	};
 	

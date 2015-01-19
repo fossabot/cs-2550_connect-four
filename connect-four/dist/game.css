@@ -22,9 +22,10 @@ html, body {
     width: 50px;
     height: 50px;
     position: relative;
-    cursor: pointer;
     padding: 0;
     margin: 0; }
+  #connect-four:not(.emptying) td {
+    cursor: pointer; }
   #connect-four td:before, #connect-four td:after {
     content: '';
     top: 0;
