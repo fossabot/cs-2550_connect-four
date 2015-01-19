@@ -65,14 +65,14 @@ about what you're looking at.
 
 ### Criteria
 
-  | Points | Requirement                                | Notes          |
-  |----|------------------------------------------------|----------------|
-  | 15 | Game description page (index.html)             | [Yes](http://ryanp-me.github.io/cs-2550/connect-four/dist/) |
-  | 5  | External Link                                  | [Yes (To Wikipedia)](http://ryanp-me.github.io/cs-2550/connect-four/dist/) |
-  | 5  | Image                                          | [Yes (From Wikipedia)](http://ryanp-me.github.io/cs-2550/connect-four/dist/) |
-  | 10 | Separate window                                | [Yes (Play Game)](http://ryanp-me.github.io/cs-2550/connect-four/dist/) |
-  | 15 | Game grid page with an HTML table for the grid | [Yes](http://ryanp-me.github.io/cs-2550/connect-four/dist/game.html) |
-  | 20 | Preliminary software design                    | [Yes](http://ryanp-me.github.io/cs-2550/connect-four/dist/design.html) |
-  | 10 | External style sheet                           | [Yes](https://github.com/ryanp-me/cs-2550/tree/master/connect-four/app/style.scss) |
-  | 10 | Styles in game description                     | [Yes](https://github.com/ryanp-me/cs-2550/tree/master/connect-four/app/index.html) |
-  | 10 | Styles in game grid                            | [<span style="color:red">No</span>](https://github.com/ryanp-me/cs-2550/tree/master/connect-four/app/game.html) |
+Points | Requirement                                    | Notes
+-------|------------------------------------------------|-------
+15     | Game description page (index.html)             | [Yes](http://ryanp-me.github.io/cs-2550/connect-four/dist/)
+5      | External Link                                  | [Yes (To Wikipedia)](http://ryanp-me.github.io/cs-2550/connect-four/dist/)
+5      | Image                                          | [Yes (From Wikipedia)](http://ryanp-me.github.io/cs-2550/connect-four/dist/)
+10     | Separate window                                | [Yes (Play Game)](http://ryanp-me.github.io/cs-2550/connect-four/dist/)
+15     | Game grid page with an HTML table for the grid | [Yes](http://ryanp-me.github.io/cs-2550/connect-four/dist/game.html)
+20     | Preliminary software design                    | [Yes](http://ryanp-me.github.io/cs-2550/connect-four/dist/design.html)
+10     | External style sheet                           | [Yes](https://github.com/ryanp-me/cs-2550/tree/master/connect-four/app/style.scss)
+10     | Styles in game description                     | [Yes](https://github.com/ryanp-me/cs-2550/tree/master/connect-four/app/index.html)
+10     | Styles in game grid                            | [<span style="color:red">No</span>](https://github.com/ryanp-me/cs-2550/tree/master/connect-four/app/game.html)
