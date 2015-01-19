@@ -3,15 +3,15 @@
 body {
 	background-color: rgb(240, 240, 240);
 	
-	&:not(.design) {
+	&.game {
 		margin: 0;
 		padding: 0;
 	}
 }
 
-/* Styles used only for the preliminary design page */
+/* Styles used only for the description and design page */
 
-.design {
+.description, .design {
 	section {
 		margin-left: 25px;
 		margin-bottom: 25px;

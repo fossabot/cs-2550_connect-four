@@ -1,25 +1,25 @@
 /* Connect Four Styles */
 body {
   background-color: #f0f0f0; }
-  body:not(.design) {
+  body.game {
     margin: 0;
     padding: 0; }
 
-/* Styles used only for the preliminary design page */
-.design section {
+/* Styles used only for the description and design page */
+.description section, .design section {
   margin-left: 25px;
   margin-bottom: 25px; }
-.design section > h1, .design section > h2, .design section > h3, .design section > h4, .design section > h5, .design section > h6 {
+.description section > h1, .description section > h2, .description section > h3, .description section > h4, .description section > h5, .description section > h6, .design section > h1, .design section > h2, .design section > h3, .design section > h4, .design section > h5, .design section > h6 {
   margin-left: -25px;
   margin-bottom: 5px;
   margin-top: 5px; }
-.design section#objects > section > h4 {
+.description section#objects > section > h4, .design section#objects > section > h4 {
   margin-left: 0px; }
-.design section#objects > section > p {
+.description section#objects > section > p, .design section#objects > section > p {
   margin-top: 5px; }
-.design th {
+.description th, .design th {
   text-align: left; }
-.design th + th, .design td + td {
+.description th + th, .description td + td, .design th + th, .design td + td {
   padding-left: 20px; }
 
 /* Styles used only for the game page */
