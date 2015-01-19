@@ -1,8 +1,46 @@
-html, body {
-	margin: 0;
-	padding: 0;
+/* Connect Four Styles */
+
+body {
 	background-color: rgb(240, 240, 240);
+	
+	&:not(.design) {
+		margin: 0;
+		padding: 0;
+	}
 }
+
+/* Styles used only for the preliminary design page */
+
+.design {
+	section {
+		margin-left: 25px;
+		margin-bottom: 25px;
+	}
+	
+	section > h1, section > h2, section > h3, section > h4, section > h5, section > h6 {
+		margin-left: -25px;
+		margin-bottom: 5px;
+		margin-top: 5px;
+	}
+	
+	section#objects > section > h4 {
+		margin-left: 0px;
+	}
+	
+	section#objects > section > p {
+		margin-top: 5px;
+	}
+	
+	th {
+		text-align: left;
+	}
+	
+	th + th, td + td {
+		padding-left: 20px;
+	}
+}
+
+/* Styles used only for the game page */
 
 $grid-cell-size: 50px;
 $grid-width: 7;

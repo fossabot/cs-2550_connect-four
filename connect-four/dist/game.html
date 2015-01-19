@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Connect Four</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body class="game">
+	<div id="connect-four" data-turn="red">
+		<table>
+			<tbody>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td data-player="red"></td>
+					<td></td>
+					<td></td>
+				</tr>
+				
+				<tr>
+					<td data-player="red"></td>
+					<td data-player="red"></td>
+					<td></td>
+					<td data-player="black"></td>
+					<td data-player="black"></td>
+					<td></td>
+					<td></td>
+				</tr>
+				
+				<tr>
+					<td data-player="red"></td>
+					<td data-player="black"></td>
+					<td data-player="black"></td>
+					<td data-player="black"></td>
+					<td data-player="red"></td>
+					<td data-player="black"></td>
+					<td></td>
+				</tr>
+				
+				<tr>
+					<td data-player="red"></td>
+					<td data-player="black"></td>
+					<td data-player="red"></td>
+					<td data-player="red"></td>
+					<td data-player="black"></td>
+					<td data-player="black"></td>
+					<td data-player="red"></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<button onclick="game.restart();">Clear Board</button>
+	</div>
+	
+	<script type="text/javascript" src="game.js"></script>
+</body>
+</html>

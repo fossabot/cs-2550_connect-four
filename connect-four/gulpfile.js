@@ -36,7 +36,7 @@ var onHint = function (file) {
 
 /* Compile SASS styles */
 gulp.task('styles', function () {
-	return gulp.src(['app/game.scss'])
+	return gulp.src(['app/style.scss'])
 		.pipe($.plumber({errorHandler: onError}))
 		.pipe(clip())
 		.pipe($.sass())
@@ -84,7 +84,7 @@ gulp.task('serve', ['watch'], function () {
 
 gulp.task('watch', ['build'], function (cb) {
 	gulp.watch('app/**/*.html', ['html']);
-	gulp.watch('app/game.scss', ['styles']);
+	gulp.watch('app/style.scss', ['styles']);
 	gulp.watch('app/game.js', ['scripts']);
 	
 	if(argv._[0] == 'serve')

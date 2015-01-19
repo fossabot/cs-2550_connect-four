@@ -1,8 +1,28 @@
-html, body {
-  margin: 0;
-  padding: 0;
+/* Connect Four Styles */
+body {
   background-color: #f0f0f0; }
+  body:not(.design) {
+    margin: 0;
+    padding: 0; }
 
+/* Styles used only for the preliminary design page */
+.design section {
+  margin-left: 25px;
+  margin-bottom: 25px; }
+.design section > h1, .design section > h2, .design section > h3, .design section > h4, .design section > h5, .design section > h6 {
+  margin-left: -25px;
+  margin-bottom: 5px;
+  margin-top: 5px; }
+.design section#objects > section > h4 {
+  margin-left: 0px; }
+.design section#objects > section > p {
+  margin-top: 5px; }
+.design th {
+  text-align: left; }
+.design th + th, .design td + td {
+  padding-left: 20px; }
+
+/* Styles used only for the game page */
 #connect-four {
   position: absolute;
   left: 50%;
@@ -109,15 +129,12 @@ html, body {
             transform: translateY(-300px); }
 
 @-webkit-keyframes drop-in-1 {
-
   0% {
     -webkit-transform: translateY(-50px);
             transform: translateY(-50px); }
-
   50% {
     -webkit-transform: translateY(2px);
             transform: translateY(2px); }
-
   75% {
     -webkit-transform: translateY(-3px);
             transform: translateY(-3px); } }
@@ -136,15 +153,12 @@ html, body {
             transform: translateY(-3px); } }
 
 @-webkit-keyframes drop-in-2 {
-
   0% {
     -webkit-transform: translateY(-100px);
             transform: translateY(-100px); }
-
   50% {
     -webkit-transform: translateY(2px);
             transform: translateY(2px); }
-
   75% {
     -webkit-transform: translateY(-3px);
             transform: translateY(-3px); } }
@@ -163,15 +177,12 @@ html, body {
             transform: translateY(-3px); } }
 
 @-webkit-keyframes drop-in-3 {
-
   0% {
     -webkit-transform: translateY(-150px);
             transform: translateY(-150px); }
-
   50% {
     -webkit-transform: translateY(2px);
             transform: translateY(2px); }
-
   75% {
     -webkit-transform: translateY(-3px);
             transform: translateY(-3px); } }
@@ -190,15 +201,12 @@ html, body {
             transform: translateY(-3px); } }
 
 @-webkit-keyframes drop-in-4 {
-
   0% {
     -webkit-transform: translateY(-200px);
             transform: translateY(-200px); }
-
   50% {
     -webkit-transform: translateY(2px);
             transform: translateY(2px); }
-
   75% {
     -webkit-transform: translateY(-3px);
             transform: translateY(-3px); } }
@@ -217,15 +225,12 @@ html, body {
             transform: translateY(-3px); } }
 
 @-webkit-keyframes drop-in-5 {
-
   0% {
     -webkit-transform: translateY(-250px);
             transform: translateY(-250px); }
-
   50% {
     -webkit-transform: translateY(2px);
             transform: translateY(2px); }
-
   75% {
     -webkit-transform: translateY(-3px);
             transform: translateY(-3px); } }
@@ -244,15 +249,12 @@ html, body {
             transform: translateY(-3px); } }
 
 @-webkit-keyframes drop-in-6 {
-
   0% {
     -webkit-transform: translateY(-300px);
             transform: translateY(-300px); }
-
   50% {
     -webkit-transform: translateY(2px);
             transform: translateY(2px); }
-
   75% {
     -webkit-transform: translateY(-3px);
             transform: translateY(-3px); } }
@@ -271,11 +273,9 @@ html, body {
             transform: translateY(-3px); } }
 
 @-webkit-keyframes flip {
-
   40% {
     -webkit-transform: rotateX(180deg);
             transform: rotateX(180deg); }
-
   60% {
     -webkit-transform: rotateX(180deg);
             transform: rotateX(180deg); } }
@@ -290,11 +290,9 @@ html, body {
             transform: rotateX(180deg); } }
 
 @-webkit-keyframes dump {
-
   12.5% {
     -webkit-transform: translateY(0);
             transform: translateY(0); }
-
   40% {
     -webkit-transform: translateY(-1000px);
             transform: translateY(-1000px); } }
