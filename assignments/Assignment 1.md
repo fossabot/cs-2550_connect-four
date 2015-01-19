@@ -63,7 +63,7 @@ If desired/needed, I can apply tags for each assignment, so you know what I'm
 submitting for each one. I don't want to get ahead in class, and confuse you
 about what you're looking at.
 
-### Criteria
+### Grading Criteria
 
 Points | Requirement                                    | Notes
 -------|------------------------------------------------|-------
