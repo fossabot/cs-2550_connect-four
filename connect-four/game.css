@@ -14,6 +14,44 @@ html, body {
 	perspective: 1000;
 }
 
+#connect-four.emptying table {
+	-webkit-animation: flip 2s;
+	-webkit-transform-style: preserve-3d;
+}
+
+#connect-four.emptying 
+	td[data-player]:before {
+		-webkit-animation: dump 4s;
+	}
+
+@-webkit-keyframes flip {
+	0% {
+		transform: none;
+	}
+	
+	40% {
+		transform: rotateX(180deg);
+	}
+	
+	60% {
+		transform: rotateX(180deg);
+	}
+	
+	100% {
+		transform: none;
+	}
+}
+
+@-webkit-keyframes dump {
+	12.5% {
+		transform: none;
+	}
+	
+	40% {
+		transform: translateY(-1000px);
+	}
+}
+
 #connect-four table {
 	    border-collapse: collapse;
 	}
@@ -58,11 +96,11 @@ html, body {
 	    background-image: radial-gradient(50% 50% , black 75%, transparent 80%);
 	}
 
-#connect-four[data-turn="red"] td.next {
+#connect-four[data-turn="red"]:not(.emptying) td.next {
 	    background-color: rgba(255, 0, 0, 0.25);
 	}
 	
-#connect-four[data-turn="black"] td.next {
+#connect-four[data-turn="black"]:not(.emptying) td.next {
 	    background-color: rgba(0, 0, 0, 0.25);
 	}
 	

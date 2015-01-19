@@ -48,6 +48,24 @@
 		}
 	};
 	
+	ConnectFour.prototype.restart = function() {
+		var self = this;
+		
+		this.board.classList.add('emptying');
+		
+		setTimeout(function() {
+			for(var i = 0; i < self.width; i++) {
+				for(var j = 0; j < self.height; j++) {
+					delete self.cells[i][j].dataset.player;
+				}
+			}
+			
+			setTimeout(function() {
+				self.board.classList.remove('emptying');
+			}, 1000);
+		}, 1000);
+	};
+	
 	// attaches the mouse event handlers
 	ConnectFour.prototype.attachMouseEventHandlers = function() {
 		var self = this;
