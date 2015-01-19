@@ -75,4 +75,4 @@ Points | Requirement                                    | Notes
 20     | Preliminary software design                    | [Yes](http://ryanp-me.github.io/cs-2550/connect-four/dist/design.html)
 10     | External style sheet                           | [Yes](https://github.com/ryanp-me/cs-2550/tree/master/connect-four/app/style.scss)
 10     | Styles in game description                     | [Yes](https://github.com/ryanp-me/cs-2550/tree/master/connect-four/app/index.html)
-10     | Styles in game grid                            | [<span style="color:red">No</span>](https://github.com/ryanp-me/cs-2550/tree/master/connect-four/app/game.html)
+10     | Styles in game grid                            | [Yes](https://github.com/ryanp-me/cs-2550/tree/master/connect-four/app/game.html)

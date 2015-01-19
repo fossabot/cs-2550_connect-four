@@ -5,6 +5,11 @@
 	<link rel="stylesheet" href="style.css" />
 </head>
 <body class="game">
+	<header style="text-align:center">
+		<h1>Connect Four</h1>
+		<button onclick="game.restart();">Clear Board</button>
+	</header>
+
 	<div id="connect-four" data-turn="red">
 		<table>
 			<tbody>
@@ -17,7 +22,7 @@
 					<td></td>
 					<td></td>
 				</tr>
-				
+
 				<tr>
 					<td></td>
 					<td></td>
@@ -27,7 +32,7 @@
 					<td></td>
 					<td></td>
 				</tr>
-				
+
 				<tr>
 					<td></td>
 					<td></td>
@@ -37,7 +42,7 @@
 					<td></td>
 					<td></td>
 				</tr>
-				
+
 				<tr>
 					<td data-player="red"></td>
 					<td data-player="red"></td>
@@ -47,7 +52,7 @@
 					<td></td>
 					<td></td>
 				</tr>
-				
+
 				<tr>
 					<td data-player="red"></td>
 					<td data-player="black"></td>
@@ -57,7 +62,7 @@
 					<td data-player="black"></td>
 					<td></td>
 				</tr>
-				
+
 				<tr>
 					<td data-player="red"></td>
 					<td data-player="black"></td>
@@ -69,10 +74,8 @@
 				</tr>
 			</tbody>
 		</table>
-		
-		<button onclick="game.restart();">Clear Board</button>
 	</div>
-	
+
 	<script type="text/javascript" src="game.js"></script>
 </body>
 </html>
