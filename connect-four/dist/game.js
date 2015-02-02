@@ -1,28 +1,66 @@
 (function() {
+	"use strict";
+
 	function ConnectFour(board) {
 		this.board = board;
 		this.width = 7;
 		this.height = 6;
 
-		this.generateBoard();
+		this.generateBoard(this.width, this.height);
 		this.attachMouseEventHandlers();
+
+		this.restoreState([
+			[null, null, null, null, null, null, null],
+			[null, null, null, null, null, null, null],
+			[null, null, null, null, 'red', null, null],
+			['red', 'red', null, 'black', 'black', null, null],
+			['red', 'black', 'black', 'black', 'red', 'black', null],
+			['red', 'black', 'red', 'red', 'black', 'black', 'red']
+		]);
 	}
 
-	ConnectFour.prototype.generateBoard = function() {
-		// make a matrix with 7x0 columns
-		this.cells = [[], [], [], [], [], [], []];
+	ConnectFour.prototype.generateBoard = function(width, height) {
+		var table = document.createElement('table');
+		var cells = [];
 
-		// save each TD element in the matrix
-		var rows = this.board.querySelectorAll('tr');
+		for(var y = 0; y < height; y++) {
+			var row = document.createElement('tr');
+			cells.push([]);
 
-		for(var i = 0; i < this.width; i++) {
-			for(var j = 0; j < this.height; j++) {
-				var cell = rows[j].children[i];
-				this.cells[i][j] = cell;
+			for(var x = 0; x < width; x++) {
+				var cell = document.createElement('td');
+				cell.dataset.x = x;
+				cell.dataset.y = y;
 
-				// save the coordinates to make later operations easier
-				cell.dataset.x = i;
-				cell.dataset.y = j;
+				cells[y][x] = cell;
+				row.appendChild(cell);
+			}
+
+			table.appendChild(row);
+		}
+
+		this.cells = cells;
+		this.board.appendChild(table);
+		this.board.dataset.turn = "red";
+	};
+
+	ConnectFour.prototype.restoreState = function(state) {
+		if(state.length != this.height || state[0].length != this.width) {
+			throw {
+				message: 'You can only restore a game that matches the current dimensions'
+			};
+		}
+
+		for(var x = 0; x < this.width; x++) {
+			for(var y = 0; y < this.height; y++) {
+				var turn = state[y][x];
+
+				if(turn !== null) {
+					this.cells[y][x].dataset.player = turn;
+				}
+				else {
+					delete this.cells[y][x].dataset.player;
+				}
 			}
 		}
 	};
@@ -33,8 +71,8 @@
 		this.board.classList.add('emptying');
 
 		setTimeout(function() {
-			for(var i = 0; i < self.width; i++) {
-				for(var j = 0; j < self.height; j++) {
+			for(var i = 0; i < self.height; i++) {
+				for(var j = 0; j < self.width; j++) {
 					delete self.cells[i][j].dataset.player;
 					self.cells[i][j].classList.remove('next');
 				}
@@ -108,7 +146,7 @@
 			var x = target.dataset.x;
 
 			for(var y = 0; y < this.height; y++) {
-				var cell = this.cells[x][y];
+				var cell = this.cells[y][x];
 
 				if(cell.dataset.player) {
 					break;
