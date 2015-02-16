@@ -1,4 +1,12 @@
-(function() {
+define('ConnectFour.view', function() {
+
+});
+
+define('ConnectFour.model', function() {
+
+});
+
+define('ConnectFour.game', function() {
 	"use strict";
 
 	function ConnectFour(board) {
@@ -58,7 +66,7 @@
 				if(turn !== null) {
 					this.cells[y][x].dataset.player = turn;
 				}
-				else {
+				else if(this.cells[y][x].dataset.player) {
 					delete this.cells[y][x].dataset.player;
 				}
 			}
@@ -73,7 +81,10 @@
 		setTimeout(function() {
 			for(var i = 0; i < self.height; i++) {
 				for(var j = 0; j < self.width; j++) {
-					delete self.cells[i][j].dataset.player;
+					if(self.cells[i][j].dataset.player) {
+						delete self.cells[i][j].dataset.player;
+					}
+
 					self.cells[i][j].classList.remove('next');
 				}
 			}
@@ -100,10 +111,10 @@
 
 				if(fill) {
 					fill.classList.remove('next');
-					fill.dataset.player = board.dataset.turn;
+					fill.dataset.player = self.board.dataset.turn;
 
 					// toggle the current turn
-					self.board.dataset.turn = board.dataset.turn == 'red' ? 'black' : 'red';
+					self.board.dataset.turn = self.board.dataset.turn == 'red' ? 'black' : 'red';
 
 					if(highlight) {
 						highlight.classList.add('next');
@@ -169,6 +180,12 @@
 		}
 	};
 
-	var board = document.getElementById('connect-four');
-	window.game = new ConnectFour(board);
-})();
+	return ConnectFour;
+});
+
+$(function() {
+	require('ConnectFour.game', function(ConnectFour) {
+		var board = $('#connect-four').element;
+		window.game = new ConnectFour(board);
+	});
+});

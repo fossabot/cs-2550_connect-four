@@ -36,24 +36,24 @@ var onHint = function (file) {
 
 /* Compile SASS styles */
 gulp.task('styles', function () {
-	return gulp.src(['app/style.scss'])
+	return gulp.src(['app/css/style.scss'])
 		.pipe($.plumber({errorHandler: onError}))
 		.pipe(clip())
 		.pipe($.sass())
 		.pipe($.autoprefixer())
-		.pipe(gulp.dest('dist/'))
+		.pipe(gulp.dest('dist/css/'))
 		.pipe(reload({stream:true}));
 });
 
 /* Lint JavaScript */
 gulp.task('scripts', function () {
-	return gulp.src('app/game.js')
+	return gulp.src('app/js/**/*.js')
 		.pipe($.plumber({errorHandler: onError}))
 		.pipe(clip())
 		.pipe($.jshint())
 		.pipe($.jshint.reporter(require('jshint-stylish')))
 		.pipe($.notify(onHint))
-		.pipe(gulp.dest('dist/'))
+		.pipe(gulp.dest('dist/js/'))
 		.pipe(reload({stream:true}));
 });
 
@@ -84,8 +84,8 @@ gulp.task('serve', ['watch'], function () {
 
 gulp.task('watch', ['build'], function (cb) {
 	gulp.watch('app/**/*.html', ['html']);
-	gulp.watch('app/style.scss', ['styles']);
-	gulp.watch('app/game.js', ['scripts']);
+	gulp.watch('app/css/**/*.scss', ['styles']);
+	gulp.watch('app/js/**/*.js', ['scripts']);
 	
 	if(argv._[0] == 'serve')
 	{
