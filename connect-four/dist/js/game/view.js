@@ -106,7 +106,7 @@ define('ConnectFour.view', function() {
 				if(fill) {
 					fill.classList.remove('next');
 
-					if(self.emit('cell_clicked', {x: +fill.dataset.x, y: +fill.dataset.y})) {
+					if(self.emit('clickCell', {x: +fill.dataset.x, y: +fill.dataset.y})) {
 						if(highlight) {
 							highlight.classList.add('next');
 						}

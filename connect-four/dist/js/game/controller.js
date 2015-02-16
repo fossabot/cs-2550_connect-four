@@ -10,7 +10,7 @@ define('ConnectFour.controller', ['ConnectFour.model', 'ConnectFour.view'], func
 		this.data = new Model(this.width, this.height);
 		this.view = new View(board, this.width, this.height);
 
-		this.data.on('loadedBoard', function(state) {
+		this.data.on('loadBoard', function(state) {
 			self.view.loadBoard(state);
 		});
 
@@ -22,7 +22,7 @@ define('ConnectFour.controller', ['ConnectFour.model', 'ConnectFour.view'], func
 			self.view.setTurn(player);
 		});
 
-		this.view.on('cell_clicked', function(cell) {
+		this.view.on('clickCell', function(cell) {
 			return self.data.makeMove(cell);
 		});
 

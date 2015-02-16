@@ -34,7 +34,7 @@ define('ConnectFour.model', function() {
 
 		this.turn = state.turn;
 		this.board = state.board;
-		this.emit('loadedBoard', state);
+		this.emit('loadBoard', state);
 	};
 
 	Model.prototype.setCell = function(cell, player) {
