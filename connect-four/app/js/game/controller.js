@@ -2,6 +2,9 @@ define('ConnectFour.controller', ['ConnectFour.model', 'ConnectFour.view'], func
 	"use strict";
 
 	function ConnectFour(board) {
+		var RED = Model.PLAYER.RED;
+		var BLACK = Model.PLAYER.BLACK;
+
 		var self = this;
 
 		this.width = 7;
@@ -36,12 +39,12 @@ define('ConnectFour.controller', ['ConnectFour.model', 'ConnectFour.view'], func
 			board: [
 				[null, null, null, null, null, null, null],
 				[null, null, null, null, null, null, null],
-				[null, null, null, null, 'red', null, null],
-				['red', 'red', null, 'black', 'black', null, null],
-				['red', 'black', 'black', 'black', 'red', 'black', null],
-				['red', 'black', 'red', 'red', 'black', 'black', 'red']
+				[null, null, null, null, RED, null, null],
+				[RED, RED, null, BLACK, BLACK, null, null],
+				[RED, BLACK, BLACK, BLACK, RED, BLACK, null],
+				[RED, BLACK, RED, RED, BLACK, BLACK, RED]
 			],
-			turn: 'red'
+			turn: RED
 		});
 	}
 

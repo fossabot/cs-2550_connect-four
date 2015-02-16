@@ -201,4 +201,6 @@ define('EventEmitterFactory', ['EventEmitter'], function(em) {
 	};
 });
 
+// I know this kinda defeats the purpose of using require, but
+// I'm not quite ready to switch to it yet. I'm too attached to $
 window.$ = require('lib');

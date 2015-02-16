@@ -1,16 +1,23 @@
 define('ConnectFour.model', function() {
 	"use strict";
 
+	var PLAYER = {
+		RED: 'red',
+		BLACK: 'black'
+	};
+
 	function Model(width, height) {
 		this.width = width;
 		this.height = height;
 		this.restart();
 	}
 
+	Model.PLAYER = PLAYER;
+
 	Model.prototype = require('EventEmitterFactory')();
 
 	Model.prototype.restart = function() {
-		this.turn = 'red';
+		this.turn = PLAYER.RED;
 		this.board = [];
 
 		for(var y = 0; y < this.height; y++) {
@@ -55,7 +62,7 @@ define('ConnectFour.model', function() {
 		var player = this.turn;
 
 		if(this.setCell(cell, player)) {
-			this.setTurn(player === 'red' ? 'black' : 'red');
+			this.setTurn(player === PLAYER.RED ? PLAYER.BLACK : PLAYER.RED);
 			this.emit('madeMove', cell, player);
 
 			return true;
