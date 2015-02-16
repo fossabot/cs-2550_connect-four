@@ -15,7 +15,7 @@ var require, define;
 		}
 
 		modules[name] = window.require(dependencies, fn);
-	}
+	};
 
 	require = function(dependencies, fn) {
 		if(arguments.length === 1) {
@@ -37,5 +37,5 @@ var require, define;
 		});
 
 		return fn.apply(window, depArray);
-	}
+	};
 })();

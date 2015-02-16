@@ -70,9 +70,7 @@ gulp.task('build', function(cb) {
 	runSequence(['html', 'styles', 'scripts'], cb);
 });
 
-gulp.task('default', function (cb) {
-	runSequence('build', cb);
-});
+gulp.task('default', ['build']);
 
 gulp.task('serve', ['watch'], function () {
 	browserSync({
@@ -85,7 +83,7 @@ gulp.task('serve', ['watch'], function () {
 gulp.task('watch', ['build'], function (cb) {
 	gulp.watch('app/**/*.html', ['html']);
 	gulp.watch('app/css/**/*.scss', ['styles']);
-	gulp.watch('app/js/**/*.js', ['scripts']);
+	gulp.watch(['../lib.js', 'app/js/**/*.js'], ['scripts']);
 	
 	if(argv._[0] == 'serve')
 	{

@@ -1,7 +1,7 @@
 var cs2550_lib = (function() {
 	function Library(val) {
 		this.generatePolyfills();
-	};
+	}
 
 	Library.prototype.generatePolyfills = function() {
 		if(typeof HTMLCollection.prototype.forEach === 'undefined') {
@@ -9,7 +9,7 @@ var cs2550_lib = (function() {
 				for(var i = 0; i < this.length; i++) {
 					func(this[i]);
 				}
-			}
+			};
 		}
 	};
 
@@ -40,7 +40,7 @@ var cs2550_lib = (function() {
 			if(this.callback) {
 				return this.callback(responses);
 			}
-		}
+		};
 
 		return CallbackHandler;
 	})();
@@ -60,7 +60,7 @@ var cs2550_lib = (function() {
 		ElementDescriptor.prototype.setText = function(msg) {
 			var setText = function(e) {
 				e.innerHTML = msg;
-			}
+			};
 
 			if(this.isArray) {
 				this.elements.forEach(setText);
@@ -135,16 +135,18 @@ var cs2550_lib = (function() {
 			return;
 		}
 		else if(typeof val === "string") {
+			var element, elements;
+
 			if(val.indexOf('#') === 0) {
-				var element = document.getElementById(val.substr(1));
+				element = document.getElementById(val.substr(1));
 				obj = new ElementDescriptor(element);
 			}
 			else if(val.indexOf('.') === 0) {
-				var elements = document.getElementsByClassName(val.substr(1));
+				elements = document.getElementsByClassName(val.substr(1));
 				obj = new ElementDescriptor(elements);
 			}
 			else {
-				var elements = document.getElementsByTagName(val.substr(1));
+				elements = document.getElementsByTagName(val.substr(1));
 				obj = new ElementDescriptor(elements);
 			}
 
