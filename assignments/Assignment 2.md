@@ -18,7 +18,7 @@ The repository for my code is also on GitHub:
 
 Points | Requirement                                     | Notes
 -------|-------------------------------------------------|-------
-30     | Grid generation using nested loops              | [Yes](https://github.com/ryanp-me/cs-2550/blob/master/connect-four/app/game.js#L22-L45)
-20     | Grid generation encapsulated (with size params) | [Yes](https://github.com/ryanp-me/cs-2550/blob/master/connect-four/app/game.js#L22-L45)
-20     | Uses `getElementById` and `createElement`           | Yes ([`getElementById`](https://github.com/ryanp-me/cs-2550/blob/master/connect-four/app/game.js#L172) and [`createElement`](https://github.com/ryanp-me/cs-2550/blob/master/connect-four/app/game.js#L22-L45))
-30     | Generates CSS class attributes                  | Kinda.. (I set [`data-player`](https://github.com/ryanp-me/cs-2550/blob/master/connect-four/app/game.js#L56-L63) rather than a class)
+30     | Grid generation using nested loops              | [Yes](https://github.com/ryanp-me/cs-2550/blob/f0c73b4dd700f24d61351120d63ef6052d4870e9/connect-four/app/game.js#L22-L45)
+20     | Grid generation encapsulated (with size params) | [Yes](https://github.com/ryanp-me/cs-2550/blob/f0c73b4dd700f24d61351120d63ef6052d4870e9/connect-four/app/game.js#L22-L45)
+20     | Uses `getElementById` and `createElement`       | Yes ([`getElementById`](https://github.com/ryanp-me/cs-2550/blob/f0c73b4dd700f24d61351120d63ef6052d4870e9/connect-four/app/game.js#L172) and [`createElement`](https://github.com/ryanp-me/cs-2550/blob/f0c73b4dd700f24d61351120d63ef6052d4870e9/connect-four/app/game.js#L22-L45))
+30     | Generates CSS class attributes                  | Kinda.. (I set [`data-player`](https://github.com/ryanp-me/cs-2550/blob/f0c73b4dd700f24d61351120d63ef6052d4870e9/connect-four/app/game.js#L56-L63) rather than a class)
