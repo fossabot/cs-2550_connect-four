@@ -1,41 +1,27 @@
 define('ConnectFour.view', function() {
-
-});
-
-define('ConnectFour.model', function() {
-
-});
-
-define('ConnectFour.game', function() {
 	"use strict";
 
-	function ConnectFour(board) {
+	function View(board, width, height) {
 		this.board = board;
-		this.width = 7;
-		this.height = 6;
+		this.width = width;
+		this.height = height;
 
-		this.generateBoard(this.width, this.height);
+		this.generateBoard();
 		this.attachMouseEventHandlers();
-
-		this.restoreState([
-			[null, null, null, null, null, null, null],
-			[null, null, null, null, null, null, null],
-			[null, null, null, null, 'red', null, null],
-			['red', 'red', null, 'black', 'black', null, null],
-			['red', 'black', 'black', 'black', 'red', 'black', null],
-			['red', 'black', 'red', 'red', 'black', 'black', 'red']
-		]);
 	}
 
-	ConnectFour.prototype.generateBoard = function(width, height) {
+	View.prototype = require('EventEmitterFactory')();
+
+	// creates the DOM for the board
+	View.prototype.generateBoard = function() {
 		var table = document.createElement('table');
 		var cells = [];
 
-		for(var y = 0; y < height; y++) {
+		for(var y = 0; y < this.height; y++) {
 			var row = document.createElement('tr');
 			cells.push([]);
 
-			for(var x = 0; x < width; x++) {
+			for(var x = 0; x < this.width; x++) {
 				var cell = document.createElement('td');
 				cell.dataset.x = x;
 				cell.dataset.y = y;
@@ -49,42 +35,47 @@ define('ConnectFour.game', function() {
 
 		this.cells = cells;
 		this.board.appendChild(table);
-		this.board.dataset.turn = "red";
 	};
 
-	ConnectFour.prototype.restoreState = function(state) {
-		if(state.length != this.height || state[0].length != this.width) {
-			throw {
-				message: 'You can only restore a game that matches the current dimensions'
-			};
+	View.prototype.loadBoard = function(state) {
+		if(state.board.length != this.height || state.board[0].length != this.width) {
+			throw 'You can only restore a game that matches the dimensions used during initialization';
 		}
+
+		this.setTurn(state.turn);
 
 		for(var x = 0; x < this.width; x++) {
 			for(var y = 0; y < this.height; y++) {
-				var turn = state[y][x];
-
-				if(turn !== null) {
-					this.cells[y][x].dataset.player = turn;
-				}
-				else if(this.cells[y][x].dataset.player) {
-					delete this.cells[y][x].dataset.player;
-				}
+				this.setCell({x:x, y:y}, state.board[y][x]);
 			}
 		}
 	};
 
-	ConnectFour.prototype.restart = function() {
-		var self = this;
+	View.prototype.setCell = function(cell, state) {
+		if(state !== null) {
+			this.cells[cell.y][cell.x].dataset.player = state;
+			this.cells[cell.y][cell.x].classList.remove('next');
+		}
+		else if(this.cells[cell.y][cell.x].dataset.player) {
+			delete this.cells[cell.y][cell.x].dataset.player;
+		}
+	};
 
+	View.prototype.setTurn = function(player) {
+		this.board.dataset.turn = player;
+	};
+
+	View.prototype.flip = function(mid_cb, end_cb) {
+		var self = this;
 		this.board.classList.add('emptying');
 
 		setTimeout(function() {
+			if(mid_cb) {
+				mid_cb();
+			}
+
 			for(var i = 0; i < self.height; i++) {
 				for(var j = 0; j < self.width; j++) {
-					if(self.cells[i][j].dataset.player) {
-						delete self.cells[i][j].dataset.player;
-					}
-
 					self.cells[i][j].classList.remove('next');
 				}
 			}
@@ -92,12 +83,15 @@ define('ConnectFour.game', function() {
 
 		setTimeout(function() {
 			self.board.classList.remove('emptying');
-			self.board.dataset.turn = 'red';
+
+			if(end_cb) {
+				end_cb();
+			}
 		}, 2000);
 	};
 
 	// attaches the mouse event handlers
-	ConnectFour.prototype.attachMouseEventHandlers = function() {
+	View.prototype.attachMouseEventHandlers = function() {
 		var self = this;
 
 		this.board.onclick = function() {
@@ -111,13 +105,11 @@ define('ConnectFour.game', function() {
 
 				if(fill) {
 					fill.classList.remove('next');
-					fill.dataset.player = self.board.dataset.turn;
 
-					// toggle the current turn
-					self.board.dataset.turn = self.board.dataset.turn == 'red' ? 'black' : 'red';
-
-					if(highlight) {
-						highlight.classList.add('next');
+					if(self.emit('cell_clicked', {x: +fill.dataset.x, y: +fill.dataset.y})) {
+						if(highlight) {
+							highlight.classList.add('next');
+						}
 					}
 				}
 			}
@@ -127,7 +119,6 @@ define('ConnectFour.game', function() {
 			if(this.classList.contains('emptying')) {
 				return;
 			}
-
 			// find the cell to highlight
 			var target = window.event.target;
 			var highlight = self.findOpenSpaceForTarget.call(self, target);
@@ -149,7 +140,7 @@ define('ConnectFour.game', function() {
 	};
 
 	// finds the next open space in the same column as a target
-	ConnectFour.prototype.findOpenSpaceForTarget = function(target, find_prev) {
+	View.prototype.findOpenSpaceForTarget = function(target, find_prev) {
 		var prev = null;
 		var next = null;
 
@@ -180,12 +171,5 @@ define('ConnectFour.game', function() {
 		}
 	};
 
-	return ConnectFour;
-});
-
-$(function() {
-	require('ConnectFour.game', function(ConnectFour) {
-		var board = $('#connect-four').element;
-		window.game = new ConnectFour(board);
-	});
+	return View;
 });

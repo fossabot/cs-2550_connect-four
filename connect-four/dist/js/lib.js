@@ -1,4 +1,4 @@
-var cs2550_lib = (function() {
+define('lib', function() {
 	function Library(val) {
 		this.generatePolyfills();
 	}
@@ -158,8 +158,47 @@ var cs2550_lib = (function() {
 	executor.beforeUnload = lib.beforeUnload.bind(lib);
 
 	return executor;
-})();
+});
 
-if(window && !window.$) {
-	window.$ = cs2550_lib;
-}
+// allow using on and emit
+define('EventEmitter', function() {
+	"use strict";
+
+	return {
+		on: function(event, fn) {
+			if(!this._listeners) {
+				this._listeners = {};
+			}
+
+			if(!this._listeners[event]) {
+				this._listeners[event] = [];
+			}
+
+			this._listeners[event].push(fn);
+		},
+		emit: function(event) {
+			var args = Array.prototype.slice.call(arguments, 1);
+			var success = true;
+
+			if(this._listeners && this._listeners[event]) {
+				this._listeners[event].forEach(function(listener) {
+					if(listener.apply(this, args) === false) {
+						success = false;
+					}
+				});
+			}
+
+			return success;
+		}
+	};
+});
+
+define('EventEmitterFactory', ['EventEmitter'], function(em) {
+	"use strict";
+
+	return function() {
+		return Object.create(em);
+	};
+});
+
+window.$ = require('lib');
