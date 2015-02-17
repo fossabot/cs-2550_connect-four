@@ -1,37 +1,153 @@
 /* Connect Four Styles */
-body {
-  background-color: whitesmoke; }
-  body.game {
-    margin: 0;
-    padding: 0; }
+html, body {
+  margin: 0px;
+  padding: 0px; }
 
-/* Styles used only for the description and design page */
-.description section, .design section {
-  margin-left: 25px;
-  margin-bottom: 25px; }
-.description section > h1, .description section > h2, .description section > h3, .description section > h4, .description section > h5, .description section > h6, .design section > h1, .design section > h2, .design section > h3, .design section > h4, .design section > h5, .design section > h6 {
-  margin-left: -25px;
-  margin-bottom: 5px;
-  margin-top: 5px; }
-.description section#objects > section > h4, .design section#objects > section > h4 {
-  margin-left: 0px; }
-.description section#objects > section > p, .design section#objects > section > p {
-  margin-top: 5px; }
-.description th, .design th {
+body {
+  background-color: white;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  color: #666;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+
+header {
+  margin: 80px auto 50px auto;
+  width: 93.75%;
+  max-width: 1280px;
+  border-top: 1px solid #d4d4d4;
+  text-transform: uppercase;
+  text-align: center; }
+  header h1 {
+    position: relative;
+    top: -34px;
+    margin: auto;
+    max-width: 500px;
+    background-color: white;
+    color: #444;
+    font-size: 52px;
+    text-transform: uppercase; }
+    header h1 a {
+      color: inherit; }
+  header nav {
+    text-align: center;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    letter-spacing: 0.5px;
+    color: #888; }
+    header nav ul {
+      list-style: none;
+      margin: 0px;
+      padding: 0px; }
+    header nav ul li {
+      display: inline-block;
+      margin: 0px 20px; }
+      header nav ul li.active {
+        font-weight: bold; }
+
+header a, footer a {
+  color: inherit;
+  text-decoration: none; }
+  header a:hover, footer a:hover {
+    text-decoration: underline; }
+
+header + div.content {
+  margin-bottom: 50px;
+  background: #F5F5F1;
+  border-radius: 6px;
+  padding-bottom: 20px;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+  header + div.content > div.wrapper {
+    margin: 0px auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 93.75%;
+    max-width: 1280px;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1; }
+
+footer {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  height: 50px;
+  background-color: #333;
+  color: white; }
+  footer .container {
+    margin: 0px auto;
+    width: 93.75%;
+    max-width: 1280px; }
+  footer .author {
+    float: left;
+    margin-top: 6px; }
+  footer .code {
+    float: right;
+    margin-top: 9px; }
+    footer .code img {
+      vertical-align: middle; }
+
+/* Content Styles */
+h2 {
+  color: #9E9E9E;
+  text-align: center;
+  font-weight: lighter; }
+
+.block-container:after {
+  clear: both; }
+
+section.block h3 {
+  color: #CECBB6;
+  font-weight: normal; }
+section.block > p, section.block > div {
+  border-radius: 5px;
+  background-color: white;
+  margin: 0px;
+  padding: 15px 15px; }
+section.block > p {
+  margin: 0px; }
+section.block > div p {
+  margin: 0px; }
+
+th {
   text-align: left; }
-.description th + th, .description td + td, .design th + th, .design td + td {
+
+th + th, td + td {
   padding-left: 20px; }
 
 /* Styles used only for the game page */
-.game header {
-  height: 80px; }
+.game .content .wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
 
-.game #connect-four {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -175px;
-  margin-top: -110px;
+#connect-four {
   -webkit-perspective: 1000;
           perspective: 1000;
   /* Show :before and :after on top of each other */
@@ -39,94 +155,94 @@ body {
   /* use :after to show the yellow grid */
   /* round the corner pieces */
   /* Change the color depending on which player owns the spot */ }
-  .game #connect-four table {
+  #connect-four table {
     border-collapse: collapse; }
-  .game #connect-four td {
+  #connect-four td {
     width: 50px;
     height: 50px;
     position: relative;
     padding: 0;
     margin: 0; }
-  .game #connect-four:not(.emptying) td {
+  #connect-four:not(.emptying) td {
     cursor: pointer; }
-  .game #connect-four td:before, .game #connect-four td:after {
+  #connect-four td:before, #connect-four td:after {
     content: '';
     top: 0;
     left: 0;
     position: absolute;
     width: 100%;
     height: 100%; }
-  .game #connect-four td:before {
+  #connect-four td:before {
     z-index: 1; }
-  .game #connect-four td:after {
+  #connect-four td:after {
     background-image: -webkit-radial-gradient(50% 50%, transparent 75%, yellow 80%);
     background-image: radial-gradient(50% 50%, transparent 75%, yellow 80%);
     z-index: 2; }
-  .game #connect-four tr:first-child td:first-child:after {
+  #connect-four tr:first-child td:first-child:after {
     border-top-left-radius: 10px; }
-  .game #connect-four tr:first-child td:last-child:after {
+  #connect-four tr:first-child td:last-child:after {
     border-top-right-radius: 10px; }
-  .game #connect-four tr:last-child td:first-child:after {
+  #connect-four tr:last-child td:first-child:after {
     border-bottom-left-radius: 10px; }
-  .game #connect-four tr:last-child td:last-child:after {
+  #connect-four tr:last-child td:last-child:after {
     border-bottom-right-radius: 10px; }
-  .game #connect-four td[data-player="red"]:before {
+  #connect-four td[data-player="red"]:before {
     background-image: -webkit-radial-gradient(50% 50%, red 75%, transparent 80%);
     background-image: radial-gradient(50% 50%, red 75%, transparent 80%); }
-  .game #connect-four td[data-player="black"]:before {
+  #connect-four td[data-player="black"]:before {
     background-image: -webkit-radial-gradient(50% 50%, black 75%, transparent 80%);
     background-image: radial-gradient(50% 50%, black 75%, transparent 80%); }
-  .game #connect-four tr:nth-child(1) td[data-player]:before {
+  #connect-four tr:nth-child(1) td[data-player]:before {
     -webkit-animation: drop-in-1 0.5s;
             animation: drop-in-1 0.5s; }
-  .game #connect-four tr:nth-child(2) td[data-player]:before {
+  #connect-four tr:nth-child(2) td[data-player]:before {
     -webkit-animation: drop-in-2 0.5s;
             animation: drop-in-2 0.5s; }
-  .game #connect-four tr:nth-child(3) td[data-player]:before {
+  #connect-four tr:nth-child(3) td[data-player]:before {
     -webkit-animation: drop-in-3 0.5s;
             animation: drop-in-3 0.5s; }
-  .game #connect-four tr:nth-child(4) td[data-player]:before {
+  #connect-four tr:nth-child(4) td[data-player]:before {
     -webkit-animation: drop-in-4 0.5s;
             animation: drop-in-4 0.5s; }
-  .game #connect-four tr:nth-child(5) td[data-player]:before {
+  #connect-four tr:nth-child(5) td[data-player]:before {
     -webkit-animation: drop-in-5 0.5s;
             animation: drop-in-5 0.5s; }
-  .game #connect-four tr:nth-child(6) td[data-player]:before {
+  #connect-four tr:nth-child(6) td[data-player]:before {
     -webkit-animation: drop-in-6 0.5s;
             animation: drop-in-6 0.5s; }
-  .game #connect-four.emptying table {
+  #connect-four.emptying table {
     -webkit-animation: flip 2s;
             animation: flip 2s; }
-  .game #connect-four.emptying td[data-player]:before {
+  #connect-four.emptying td[data-player]:before {
     -webkit-animation: dump 4s !important;
             animation: dump 4s !important; }
-  .game #connect-four:not(.emptying)[data-turn="red"] td.next:before {
+  #connect-four:not(.emptying)[data-turn="red"] td.next:before {
     background-image: -webkit-radial-gradient(50% 50%, rgba(255, 0, 0, 0.25) 75%, transparent 80%);
     background-image: radial-gradient(50% 50%, rgba(255, 0, 0, 0.25) 75%, transparent 80%); }
-  .game #connect-four:not(.emptying)[data-turn="black"] td.next:before {
+  #connect-four:not(.emptying)[data-turn="black"] td.next:before {
     background-image: -webkit-radial-gradient(50% 50%, rgba(0, 0, 0, 0.25) 75%, transparent 80%);
     background-image: radial-gradient(50% 50%, rgba(0, 0, 0, 0.25) 75%, transparent 80%); }
-  .game #connect-four:not(.emptying) tr:nth-child(1) td.next:before {
+  #connect-four:not(.emptying) tr:nth-child(1) td.next:before {
     -webkit-transform: translateY(-50px);
         -ms-transform: translateY(-50px);
             transform: translateY(-50px); }
-  .game #connect-four:not(.emptying) tr:nth-child(2) td.next:before {
+  #connect-four:not(.emptying) tr:nth-child(2) td.next:before {
     -webkit-transform: translateY(-100px);
         -ms-transform: translateY(-100px);
             transform: translateY(-100px); }
-  .game #connect-four:not(.emptying) tr:nth-child(3) td.next:before {
+  #connect-four:not(.emptying) tr:nth-child(3) td.next:before {
     -webkit-transform: translateY(-150px);
         -ms-transform: translateY(-150px);
             transform: translateY(-150px); }
-  .game #connect-four:not(.emptying) tr:nth-child(4) td.next:before {
+  #connect-four:not(.emptying) tr:nth-child(4) td.next:before {
     -webkit-transform: translateY(-200px);
         -ms-transform: translateY(-200px);
             transform: translateY(-200px); }
-  .game #connect-four:not(.emptying) tr:nth-child(5) td.next:before {
+  #connect-four:not(.emptying) tr:nth-child(5) td.next:before {
     -webkit-transform: translateY(-250px);
         -ms-transform: translateY(-250px);
             transform: translateY(-250px); }
-  .game #connect-four:not(.emptying) tr:nth-child(6) td.next:before {
+  #connect-four:not(.emptying) tr:nth-child(6) td.next:before {
     -webkit-transform: translateY(-300px);
         -ms-transform: translateY(-300px);
             transform: translateY(-300px); }

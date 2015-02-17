@@ -1,7 +1,5 @@
 /* Styles used only for the game page */
 
-$grid-header-height: 80px;
-
 $grid-cell-size: 50px;
 $grid-width: 7;
 $grid-height: 6;
@@ -14,17 +12,13 @@ $red-hover-gradient: radial-gradient(50% 50% , rgba(255, 0, 0, 0.25) 75%, transp
 $black-gradient: radial-gradient(50% 50% , black 75%, transparent 80%);
 $black-hover-gradient: radial-gradient(50% 50% , rgba(0, 0, 0, 0.25) 75%, transparent 80%);
 
-.game header {
-	height: $grid-header-height;
+.game .content .wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.game #connect-four {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	margin-left: #{$grid-cell-size * $grid-width / -2};
-	margin-top: #{($grid-cell-size * $grid-height - $grid-header-height) / -2};
-
+#connect-four {
 	perspective: 1000;
 
 	table {

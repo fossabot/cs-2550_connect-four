@@ -5,12 +5,37 @@
 	<link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="game">
-	<header style="text-align:center">
-		<h1>Connect Four</h1>
-		<button onclick="game.restart();">Clear Board</button>
+	<header>
+		<h1><a href="./">Connect Four</a></h1>
+		<nav>
+			<ul>
+				<li class="active"><a href="game.html">Play Game</a></li>
+				<li><a href="design.html">Preliminary Design</a></li>
+				<li><a href="http://en.wikipedia.org/wiki/Connect_Four" target="_blank">Game Information</a></li>
+			</ul>
+		</nav>
 	</header>
 
-	<div id="connect-four"></div>
+	<div class="content">
+		<div class="wrapper" style="text-align:center">
+			<div id="connect-four"></div>
+		</div>
+	</div>
+
+	<footer>
+		<div class="container">
+			<span class="author">
+				Ryan Pendleton<br/>
+				CS 2550
+			</span>
+
+			<span class="code">
+				<a href="https://github.com/ryanp-me/cs-2550/tree/master/connect-four">
+					<img src="img/GitHub-Mark-Light-64px.png" alt="GitHub" width="32" height="32" />
+				</a>
+			</span>
+		</div>
+	</footer>
 
 	<script type="text/javascript" src="js/require.js"></script>
 	<script type="text/javascript" src="js/lib.js"></script>
