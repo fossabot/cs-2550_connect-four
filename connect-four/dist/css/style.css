@@ -82,6 +82,9 @@ header + div.content {
     -webkit-flex: 1;
         -ms-flex: 1;
             flex: 1; }
+  @media print {
+    header + div.content {
+      margin-bottom: 0px; } }
 
 footer {
   position: fixed;
@@ -103,6 +106,9 @@ footer {
     margin-top: 9px; }
     footer .code img {
       vertical-align: middle; }
+  @media print {
+    footer {
+      display: none; } }
 
 /* Content Styles */
 h2 {
@@ -115,7 +121,11 @@ h2 {
 
 section.block h3 {
   color: #CECBB6;
-  font-weight: normal; }
+  font-weight: normal;
+  margin-bottom: 6px; }
+section.block h4 {
+  font-weight: normal;
+  margin-bottom: 6px; }
 section.block > p, section.block > div {
   border-radius: 5px;
   background-color: white;

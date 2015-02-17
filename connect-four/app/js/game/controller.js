@@ -4,14 +4,13 @@ define('ConnectFour.controller', ['ConnectFour.model', 'ConnectFour.view'], func
 	function ConnectFour(board) {
 		var RED = Model.PLAYER.RED;
 		var BLACK = Model.PLAYER.BLACK;
+		var WIDTH = 7;
+		var HEIGHT = 6;
 
 		var self = this;
 
-		this.width = 7;
-		this.height = 6;
-
-		this.data = new Model(this.width, this.height);
-		this.view = new View(board, this.width, this.height);
+		this.data = new Model(WIDTH, HEIGHT);
+		this.view = new View(board, WIDTH, HEIGHT);
 
 		this.data.on('loadBoard', function(state) {
 			self.view.loadBoard(state);

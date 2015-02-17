@@ -99,6 +99,10 @@ header + div.content {
 
 		flex: 1;
 	}
+
+	@media print {
+		margin-bottom: 0px;
+	}
 }
 
 footer {
@@ -129,6 +133,10 @@ footer {
 			vertical-align: middle;
 		}
 	}
+
+	@media print {
+		display: none;
+	}
 }
 
 /* Content Styles */
@@ -147,6 +155,12 @@ section.block {
 	h3 {
 		color: #CECBB6;
 		font-weight: normal;
+		margin-bottom: 6px;
+	}
+
+	h4 {
+		font-weight: normal;
+		margin-bottom: 6px;
 	}
 
 	> p, > div {

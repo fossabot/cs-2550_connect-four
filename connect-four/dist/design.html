@@ -19,21 +19,21 @@
 	<div class="content">
 		<div class="wrapper">
 			<section id="constants" class="block-container">
-				<h2>Constants</h3>
+				<h2><a name="constants">Constants</a></h3>
 
 				<section class="block">
 					<h3>GRID_WIDTH</h3>
-					<p>how many columns are in the game (7)</p>
+					<p>How many columns are in the game (7)</p>
 				</section>
 
 				<section class="block">
 					<h3>GRID_HEIGHT</h3>
-					<p>how many rows are in the game (6)</p>
+					<p>How many rows are in the game (6)</p>
 				</section>
 			</section>
 
 			<section id="enumerations" class="block-container">
-				<h2>Enumerations</h2>
+				<h2><a name="enumerations">Enumerations</a></h2>
 
 				<section class="block">
 					<h3>Players</h3>
@@ -66,65 +66,145 @@
 			</section>
 
 			<section id="objects" class="block-container">
-				<h2>Objects</h2>
+				<h2><a name="objects">Objects</a></h2>
 
 				<section class="block">
-					<h3>ConnectFour</h3>
+					<h3>ConnectFourModel</h3>
 
 					<div>
-						<p>An object to facilitate communication between each component of the game. A ConnectFour object has the following properties:</p>
+						<p>An object used to manage the state of the game. Emits events when game data has changed. Objects of this instance have the following properties:</p>
 
 						<ul class="properties">
-							<li><b>turn</b>: a value from the Players enumeration, indicating whose turn it is.</li>
-							<li><b>cells</b>: a GRID_WIDTH x GRID_HEIGHT matrix that represents the cells in the grid.</li>
+							<li><b>width</b>: the width of the grid</li>
+							<li><b>height</b>: the height of the grid</li>
+							<li><b>turn</b>: a value from the Players enumeration, indicating whose turn it is</li>
+							<li><b>board</b>: a two-dimensional array used to store the state of each cell in the grid</li>
 						</ul>
+
+						<h4>Example</h4>
+						<code>
+							{<br/>
+							&nbsp;&nbsp;&nbsp;"width":7,<br/>
+							&nbsp;&nbsp;&nbsp;"height":6,<br/>
+							&nbsp;&nbsp;&nbsp;"turn":"red",<br/>
+							&nbsp;&nbsp;&nbsp;"board":[<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[null, null, null, null, null, null, null],<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[null, null, null, null, null, null, null],<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[null, null, null, null, "red", null, null],<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;["red", "red", null, "black", "black", null, null],<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;["red", "black", "black", "black", "red", "black", null],<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;["red", "black", "red", "red", "black", "black", "red"]<br/>
+							&nbsp;&nbsp;&nbsp;]<br/>
+							}
+						</code>
 					</div>
 				</section>
 
 				<section class="block">
-					<h3>Cell</h3>
+					<h3>ConnectFourView</h3>
 
 					<div>
-						<p>An object representing a cell in the grid. A Cell object has the following properties:</p>
+						<p>An object used to manage the DOM of the game, and handle user interaction. Emits events when a user interacts with the game. Objects of this instance have the following properties:</p>
 
 						<ul class="properties">
-							<li><b>player</b>: a value from the Players enumeration, indicating if a player has placed their piece in the cell.</li>
+							<li><b>width</b>: the width of the grid</li>
+							<li><b>height</b>: the height of the grid</li>
+							<li><b>board</b>: the DOM element the view is responsible for displaying</li>
+							<li><b>cells</b>: a two-dimensional array used to store the DOM element of each cell in the grid</li>
+						</ul>
+
+						<h4>Example</h4>
+						<code>
+							{<br/>
+							&nbsp;&nbsp;&nbsp;"width":7,<br/>
+							&nbsp;&nbsp;&nbsp;"height":6,<br/>
+							&nbsp;&nbsp;&nbsp;"board": div#connect-four<br/>
+							&nbsp;&nbsp;&nbsp;"cells": [<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[td, td, td, td, td, td, td],<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[td, td, td, td, td, td, td],<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[td, td, td, td, td, td, td]<br/>
+							&nbsp;&nbsp;&nbsp;]<br/>
+							}
+						</code>
+					</div>
+				</section>
+
+				<section class="block">
+					<h3>ConnectFourController</h3>
+
+					<div>
+						<p>An object to facilitate communication between each component of the game. Utilizes events emitted by the Model and View, and forwards events as necessary. Objects of this instance have the following properties:</p>
+
+						<ul class="properties">
+							<li><b>data</b>: a ConnectFourModel object</li>
+							<li><b>view</b>: a ConnectFourView object</li>
 						</ul>
 					</div>
 				</section>
 			</section>
 
 			<section id="methods" class="block-container">
-				<h2>Functions/Methods</h2>
+				<h2><a name="functions">Functions/Methods</a></h2>
 
 				<section class="block">
-					<h3>createGame()</h3>
+					<h3>Model.createCode()</h3>
 					<p>Returns a randomly generated code that can be used by another client to begin a multiplayer game. Connects to the socket and waits for opponent.</p>
 				</section>
 
 				<section class="block">
-					<h3>joinGame(code)</h3>
+					<h3>Model.joinGame(code)</h3>
 					<p>Joins a game identified by a randomly generated code. Connects to the socket channel and notifies the opponent of arrival.</p>
 				</section>
 
 				<section class="block">
-					<h3>restartGame()</h3>
+					<h3>Model.restart()</h3>
 					<p>Sets the player of each cell to NONE, and sets the current turn to BLACK. If playing a networked game, sends a message to the opponent telling them the game has been restarted.</p>
 				</section>
 
 				<section class="block">
-					<h3>makeMove(player, cell)</h3>
-					<p>Sets the player of the cell to the given player. If playing a networked game, sends a message to the opponent telling them the move has been made.</p>
+					<h3>Model.loadBoard(state)</h3>
+					<p>Used to restore a game from local storage or the network. The state argument is an object containing turn and board.</p>
 				</section>
 
 				<section class="block">
-					<h3>checkForWinner(cell)</h3>
-					<p>Checks the board to see if the given cell is part of a winning set of cells.</p>
+					<h3>Model.makeMove(cell)</h3>
+					<p>Sets the player of the cell to the current player. If playing a networked game, this sends a message to the opponent telling them the move has been made. The current player will be switched after calling this method.</p>
+				</section>
+
+				<section class="block">
+					<h3>Model.checkForWinner(cell)</h3>
+					<p>Checks the board to see if the given cell is part of a winning group of cells.</p>
+				</section>
+
+				<section class="block">
+					<h3>View.generateBoard()</h3>
+					<p>Creates the DOM used to display the board to the user.</p>
+				</section>
+
+				<section class="block">
+					<h3>View.loadBoard(state)</h3>
+					<p>Accepts a state object from the model and updates the DOM to display it.</p>
+				</section>
+
+				<section class="block">
+					<h3>View.setCell(cell, player)</h3>
+					<p>Updates the DOM to show the given player as the holder of the cell.</p>
+				</section>
+
+				<section class="block">
+					<h3>View.setTurn(player)</h3>
+					<p>Updates the DOM to indicate that it is the turn of the given player.</p>
+				</section>
+
+				<section class="block">
+					<h3>View.flip(state)</h3>
+					<p>Plays a flip animation to empty the board.</p>
 				</section>
 			</section>
 
 			<section id="notes" class="block-container">
-				<h2>Notes</h2>
+				<h2><a name="notes">Notes</a></h2>
 
 				<section class="block">
 					<p>
