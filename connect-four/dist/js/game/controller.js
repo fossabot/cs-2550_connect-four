@@ -1,16 +1,14 @@
 define('ConnectFour.controller', ['ConnectFour.model', 'ConnectFour.view'], function(Model, View) {
-	"use strict";
+	'use strict';
 
-	function ConnectFour(board) {
-		var RED = Model.PLAYER.RED;
-		var BLACK = Model.PLAYER.BLACK;
-		var WIDTH = 7;
-		var HEIGHT = 6;
+	var RED = Model.PLAYER.RED;
+	var BLACK = Model.PLAYER.BLACK;
 
+	function ConnectFour() {
 		var self = this;
 
-		this.data = new Model(WIDTH, HEIGHT);
-		this.view = new View(board, WIDTH, HEIGHT);
+		this.data = new Model();
+		this.view = new View();
 
 		this.data.on('loadBoard', function(state) {
 			self.view.loadBoard(state);
@@ -56,7 +54,6 @@ define('ConnectFour.controller', ['ConnectFour.model', 'ConnectFour.view'], func
 
 $(function() {
 	require('ConnectFour.controller', function(ConnectFour) {
-		var board = $('#connect-four').element;
-		window.game = new ConnectFour(board);
+		window.game = new ConnectFour();
 	});
 });

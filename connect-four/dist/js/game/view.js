@@ -1,20 +1,23 @@
 define('ConnectFour.view', function() {
-	"use strict";
+	'use strict';
 
-	function View(board, width, height) {
-		this.board = board;
-		this.width = width;
-		this.height = height;
+	function View() {
+		this.game = $('#connect-four').element;
+		this.board = document.createElement('table');
+		this.game.appendChild(this.board);
 
-		this.generateBoard();
 		this.attachMouseEventHandlers();
 	}
 
 	View.prototype = require('EventEmitterFactory')();
 
 	// creates the DOM for the board
-	View.prototype.generateBoard = function() {
-		var table = document.createElement('table');
+	View.prototype.generateBoard = function(board) {
+		// remove any existing rows
+		while(this.board.firstChild) {
+			this.board.removeChild(this.board.firstChild);
+		}
+
 		var cells = [];
 
 		for(var y = 0; y < this.height; y++) {
@@ -26,29 +29,26 @@ define('ConnectFour.view', function() {
 				cell.dataset.x = x;
 				cell.dataset.y = y;
 
+				if(board[y][x]) {
+					cell.dataset.player = board[y][x];
+				}
+
 				cells[y][x] = cell;
 				row.appendChild(cell);
 			}
 
-			table.appendChild(row);
+			this.board.appendChild(row);
 		}
 
 		this.cells = cells;
-		this.board.appendChild(table);
 	};
 
 	View.prototype.loadBoard = function(state) {
-		if(state.board.length != this.height || state.board[0].length != this.width) {
-			throw 'You can only restore a game that matches the dimensions used during initialization';
-		}
+		this.height = state.board.length;
+		this.width = state.board[0].length;
 
 		this.setTurn(state.turn);
-
-		for(var x = 0; x < this.width; x++) {
-			for(var y = 0; y < this.height; y++) {
-				this.setCell({x:x, y:y}, state.board[y][x]);
-			}
-		}
+		this.generateBoard(state.board);
 	};
 
 	View.prototype.setCell = function(cell, state) {
@@ -62,12 +62,12 @@ define('ConnectFour.view', function() {
 	};
 
 	View.prototype.setTurn = function(player) {
-		this.board.dataset.turn = player;
+		this.game.dataset.turn = player;
 	};
 
 	View.prototype.flip = function(mid_cb, end_cb) {
 		var self = this;
-		this.board.classList.add('emptying');
+		this.game.classList.add('emptying');
 
 		setTimeout(function() {
 			if(mid_cb) {

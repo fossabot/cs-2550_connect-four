@@ -1,7 +1,7 @@
 var require, define;
 
 (function() {
-	"use strict";
+	'use strict';
 
 	var modules = {};
 

@@ -1,20 +1,18 @@
 define('ConnectFour.model', function() {
-	"use strict";
+	'use strict';
 
-	var PLAYER = {
-		RED: 'red',
-		BLACK: 'black'
-	};
-
-	function Model(width, height) {
-		this.width = width;
-		this.height = height;
+	function Model() {
+		this.width = 7;
+		this.height = 6;
 		this.restart();
 	}
 
-	Model.PLAYER = PLAYER;
-
 	Model.prototype = require('EventEmitterFactory')();
+
+	var PLAYER = Model.PLAYER = {
+		RED: 'red',
+		BLACK: 'black'
+	};
 
 	Model.prototype.restart = function() {
 		this.turn = PLAYER.RED;

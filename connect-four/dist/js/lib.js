@@ -1,4 +1,6 @@
 define('lib', function() {
+	'use strict';
+
 	function Library(val) {
 		this.generatePolyfills();
 	}
@@ -162,7 +164,7 @@ define('lib', function() {
 
 // allow using on and emit
 define('EventEmitter', function() {
-	"use strict";
+	'use strict';
 
 	return {
 		on: function(event, fn) {
@@ -194,7 +196,7 @@ define('EventEmitter', function() {
 });
 
 define('EventEmitterFactory', ['EventEmitter'], function(em) {
-	"use strict";
+	'use strict';
 
 	return function() {
 		return Object.create(em);
