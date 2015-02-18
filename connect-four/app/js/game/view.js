@@ -82,7 +82,7 @@ define('ConnectFour.view', function() {
 		}, 1000);
 
 		setTimeout(function() {
-			self.board.classList.remove('emptying');
+			self.game.classList.remove('emptying');
 
 			if(end_cb) {
 				end_cb();

@@ -15,7 +15,7 @@ define('lib', function() {
 		}
 	};
 
-	CallbackHandler = (function() {
+	var CallbackHandler = (function() {
 		function CallbackHandler(callback) {
 			var self = this;
 
@@ -47,7 +47,7 @@ define('lib', function() {
 		return CallbackHandler;
 	})();
 
-	ElementDescriptor = (function() {
+	var ElementDescriptor = (function() {
 		function ElementDescriptor(elements) {
 			if(elements instanceof HTMLCollection || elements instanceof Array) {
 				this.isArray = true;
