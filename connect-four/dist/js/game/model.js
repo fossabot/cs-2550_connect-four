@@ -7,11 +7,38 @@ define('ConnectFour.model', function() {
 		this.restart();
 	}
 
-	Model.prototype = require('EventEmitterFactory')();
-
 	var PLAYER = Model.PLAYER = {
 		RED: 'red',
 		BLACK: 'black'
+	};
+
+	Model.prototype = require('EventEmitterFactory')();
+
+	Model.prototype.loadSampleBoard = function() {
+		var RED = PLAYER.RED;
+		var BLACK = PLAYER.BLACK;
+
+		this.loadBoard({
+			board: [
+				[null,  null,   null,   null,   null,   null,   null],
+				[null,  null,   null,   null,   null,   null,   null],
+				[null,  null,   null,   null,   RED,    null,   null],
+				[RED,   RED,    null,   BLACK,  BLACK,  null,   null],
+				[RED,   BLACK,  BLACK,  BLACK,  RED,    BLACK,  null],
+				[RED,   BLACK,  RED,    RED,    BLACK,  BLACK,  RED]
+			],
+			turn: RED
+		});
+	};
+
+	Model.prototype.loadBoard = function(state) {
+		if(state.board.length != this.height || state.board[0].length != this.width) {
+			throw 'You can only restore a game that matches the dimensions used during initialization';
+		}
+
+		this.turn = state.turn;
+		this.board = state.board;
+		this.emit('loadBoard', state);
 	};
 
 	Model.prototype.restart = function() {
@@ -30,16 +57,6 @@ define('ConnectFour.model', function() {
 			turn: this.turn,
 			board: this.board
 		});
-	};
-
-	Model.prototype.loadBoard = function(state) {
-		if(state.board.length != this.height || state.board[0].length != this.width) {
-			throw 'You can only restore a game that matches the dimensions used during initialization';
-		}
-
-		this.turn = state.turn;
-		this.board = state.board;
-		this.emit('loadBoard', state);
 	};
 
 	Model.prototype.setCell = function(cell, player) {

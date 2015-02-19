@@ -1,9 +1,6 @@
 define('ConnectFour.controller', ['ConnectFour.model', 'ConnectFour.view'], function(Model, View) {
 	'use strict';
 
-	var RED = Model.PLAYER.RED;
-	var BLACK = Model.PLAYER.BLACK;
-
 	function ConnectFour() {
 		var self = this;
 
@@ -32,17 +29,7 @@ define('ConnectFour.controller', ['ConnectFour.model', 'ConnectFour.view'], func
 			});
 		});
 
-		this.data.loadBoard({
-			board: [
-				[null, null, null, null, null, null, null],
-				[null, null, null, null, null, null, null],
-				[null, null, null, null, RED, null, null],
-				[RED, RED, null, BLACK, BLACK, null, null],
-				[RED, BLACK, BLACK, BLACK, RED, BLACK, null],
-				[RED, BLACK, RED, RED, BLACK, BLACK, RED]
-			],
-			turn: RED
-		});
+		this.data.loadSampleBoard();
 	}
 
 	ConnectFour.prototype.restart = function() {
