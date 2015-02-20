@@ -1,0 +1,3 @@
+[submodule "class-repo"]
+	path = class-repo
+	url = git@github.com:ninja-coders/cs2550-classrepo.git
