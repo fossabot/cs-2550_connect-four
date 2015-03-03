@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Project Checkpoint</title>
+	<link rel="stylesheet" href="css/style.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+</head>
+<body class="design">
+	<header>
+		<h1><a href="./">Connect Four</a></h1>
+		<nav>
+			<ul>
+				<li><a href="game.html">Play Game</a></li>
+				<li><a href="design.html">Preliminary Design</a></li>
+				<li class="active"><a href="checkpoint.html">Checkpoint</a></li>
+				<li><a href="http://en.wikipedia.org/wiki/Connect_Four" target="_blank">Game Information</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<div class="content">
+		<div class="wrapper">
+			<section id="methods" class="block-container">
+				<h2><a name="functions">Object Implementation</a></h2>
+
+				<section class="block checkpoint">
+					<h3>Model</h3>
+					<div>
+						<table>
+							<thead>
+								<th>Method</th>
+								<th>Status</th>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td><code>createCode()</code></td>
+									<td>Not Yet Started</td>
+								</tr>
+
+								<tr>
+									<td><code>joinGame(code)</code></td>
+									<td>Not Yet Started</td>
+								</tr>
+
+								<tr>
+									<td><code>restart()</code></td>
+									<td>Partially Implemented</td>
+								</tr>
+
+								<tr>
+									<td><code>loadBoard()</code></td>
+									<td>Completely Implemented</td>
+								</tr>
+
+								<tr>
+									<td><code>makeMove(cell)</code></td>
+									<td>Partially Implemented</td>
+								</tr>
+
+								<tr>
+									<td><code>checkForWinner(cell, player)</code></td>
+									<td>Complete Implemented</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<section class="block implementation">
+					<h3>View</h3>
+					<div>
+						<table>
+							<thead>
+								<th>Method</th>
+								<th>Status</th>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td><code>generateBoard()</code></td>
+									<td>Completely Implemented</td>
+								</tr>
+
+								<tr>
+									<td><code>loadBoard(state)</code></td>
+									<td>Completely Implemented</td>
+								</tr>
+
+								<tr>
+									<td><code>setCell(cell, player)</code></td>
+									<td>Completely Implemented</td>
+								</tr>
+
+								<tr>
+									<td><code>setTurn(player)</code></td>
+									<td>Completely Implemented</td>
+								</tr>
+
+								<tr>
+									<td><code>flip(state)</code></td>
+									<td>Completely Implemented</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</section>
+			</section>
+		</div>
+	</div>
+
+	<footer>
+		<div class="container">
+			<span class="author">
+				Ryan Pendleton<br/>
+				CS 2550
+			</span>
+
+			<span class="code">
+				<a href="https://github.com/ryanp-me/cs-2550/tree/master/connect-four">
+					<img src="img/GitHub-Mark-Light-64px.png" alt="GitHub" width="32" height="32" />
+				</a>
+			</span>
+		</div>
+	</footer>
+
+	<script src="js/fastclick.min.js"></script>
+</body>
+</html>

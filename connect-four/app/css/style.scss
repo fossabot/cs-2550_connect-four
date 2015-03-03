@@ -207,6 +207,17 @@ section.block {
 			margin: 0px;
 		}
 	}
+
+	&.checkpoint {
+		table {
+			width: 500px;
+			margin: inherit auto;
+
+			th {
+				width: 50%;
+			}
+		}
+	}
 }
 
 th {

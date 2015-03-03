@@ -152,6 +152,11 @@ section.block > p {
   margin: 0px; }
 section.block > div p {
   margin: 0px; }
+section.block.checkpoint table {
+  width: 500px;
+  margin: inherit auto; }
+  section.block.checkpoint table th {
+    width: 50%; }
 
 th {
   text-align: left; }
