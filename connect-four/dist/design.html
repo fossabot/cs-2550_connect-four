@@ -74,7 +74,10 @@
 					<h3>ConnectFourModel</h3>
 
 					<div>
-						<p>An object used to manage the state of the game. Emits events when game data has changed. Objects of this instance have the following properties:</p>
+						<p>
+							An object used to manage the state of the game. Emits events when game
+							data has changed. Objects of this instance have the following properties:
+						</p>
 
 						<ul class="properties">
 							<li><b>width</b>: the width of the grid</li>
@@ -106,7 +109,11 @@
 					<h3>ConnectFourView</h3>
 
 					<div>
-						<p>An object used to manage the DOM of the game, and handle user interaction. Emits events when a user interacts with the game. Objects of this instance have the following properties:</p>
+						<p>
+							An object used to manage the DOM of the game, and handle user interaction.
+							Emits events when a user interacts with the game. Objects of this instance
+							have the following properties:
+						</p>
 
 						<ul class="properties">
 							<li><b>width</b>: the width of the grid</li>
@@ -136,7 +143,11 @@
 					<h3>ConnectFourController</h3>
 
 					<div>
-						<p>An object to facilitate communication between each component of the game. Utilizes events emitted by the Model and View, and forwards events as necessary. Objects of this instance have the following properties:</p>
+						<p>
+							An object to facilitate communication between each component of the game.
+							Utilizes events emitted by the Model and View, and forwards events as
+							necessary. Objects of this instance have the following properties:
+						</p>
 
 						<ul class="properties">
 							<li><b>data</b>: a ConnectFourModel object</li>
@@ -151,32 +162,52 @@
 
 				<section class="block">
 					<h3>Model.createCode()</h3>
-					<p>Returns a randomly generated code that can be used by another client to begin a multiplayer game. Connects to the socket and waits for opponent.</p>
+					<p>
+						Returns a randomly generated code that can be used by another client to begin a
+						multiplayer game. Connects to the socket and waits for opponent.
+					</p>
 				</section>
 
 				<section class="block">
 					<h3>Model.joinGame(code)</h3>
-					<p>Joins a game identified by a randomly generated code. Connects to the socket channel and notifies the opponent of arrival.</p>
+					<p>
+						Joins a game identified by a randomly generated code. Connects to the socket
+						channel and notifies the opponent of arrival.
+					</p>
 				</section>
 
 				<section class="block">
 					<h3>Model.restart()</h3>
-					<p>Sets the player of each cell to NONE, and sets the current turn to BLACK. If playing a networked game, sends a message to the opponent telling them the game has been restarted.</p>
+					<p>
+						Sets the player of each cell to NONE, and sets the current turn to BLACK. If
+						playing a networked game, sends a message to the opponent telling them the game
+						has been restarted.
+					</p>
 				</section>
 
 				<section class="block">
 					<h3>Model.loadBoard(state)</h3>
-					<p>Used to restore a game from local storage or the network. The state argument is an object containing turn and board.</p>
+					<p>
+						Used to restore a game from local storage or the network. The state argument
+						is an object containing turn and board.
+					</p>
 				</section>
 
 				<section class="block">
 					<h3>Model.makeMove(cell)</h3>
-					<p>Sets the player of the cell to the current player. If playing a networked game, this sends a message to the opponent telling them the move has been made. The current player will be switched after calling this method.</p>
+					<p>
+						Sets the player of the cell to the current player. If playing a networked game,
+						this sends a message to the opponent telling them the move has been made. The
+						current player will be switched after calling this method.
+					</p>
 				</section>
 
 				<section class="block">
 					<h3>Model.checkForWinner(cell, player)</h3>
-					<p>Checks the board to see if the given cell is part of a winning group of cells held by the player.</p>
+					<p>
+						Checks the board to see if the given cell is part of a winning group of cells
+						held by the player.
+					</p>
 				</section>
 
 				<section class="block">
@@ -210,7 +241,13 @@
 
 				<section class="block">
 					<p>
-						To eliminate the need for a dedicated server, a WebSocket relay server is used for communication between networked games. To support concurrent games, a random code will be generated for each session, and used as the channel for the WebSocket. Different URL's for the socket can be found at <a href="http://sockets.mbed.org/me.ryanp.connect-four.code">http://sockets.mbed.org/me.ryanp.connect-four.code</a>, where code is replaced with the code of the game session.
+						To eliminate the need for a dedicated server, a WebSocket relay
+						server is used for communication between networked games. To support
+						concurrent games, a random code will be generated for each session,
+						and used as the channel for the WebSocket. Different URL's for the
+						socket can be found at <a href="http://sockets.mbed.org/me.ryanp.connect-four.code">
+						http://sockets.mbed.org/me.ryanp.connect-four.code</a>, where code is
+						replaced with the code of the game session.
 					</p>
 				</section>
 			</section>
