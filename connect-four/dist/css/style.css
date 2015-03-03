@@ -76,7 +76,7 @@ header a, footer a {
 
 header + div.content {
   margin-bottom: 50px;
-  background: #F5F5F1;
+  background-color: #F5F5F1;
   border-radius: 6px;
   padding-bottom: 20px;
   -webkit-box-flex: 1;
@@ -153,10 +153,33 @@ section.block > p {
 section.block > div p {
   margin: 0px; }
 section.block.checkpoint table {
-  width: 500px;
-  margin: inherit auto; }
+  width: 500px; }
   section.block.checkpoint table th {
     width: 50%; }
+  section.block.checkpoint table td.unimplemented {
+    color: #bd0000; }
+  section.block.checkpoint table td.partial {
+    color: #da8e00; }
+  section.block.checkpoint table td.complete {
+    color: green; }
+  @media screen and (max-width: 600px) {
+    section.block.checkpoint table {
+      width: 100%; }
+      section.block.checkpoint table td, section.block.checkpoint table th {
+        display: inline-block;
+        width: 100%;
+        padding: 0px; }
+      section.block.checkpoint table tr + tr > td:first-child {
+        margin-top: 15px; }
+      section.block.checkpoint table th:first-child {
+        text-align: center; }
+      section.block.checkpoint table th:nth-child(2) {
+        display: none; } }
+section.block a[href] {
+  color: #806000;
+  text-decoration: none; }
+  section.block a[href]:hover {
+    text-decoration: underline; }
 
 th {
   text-align: left; }

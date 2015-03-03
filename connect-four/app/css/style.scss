@@ -108,7 +108,7 @@ header a, footer a {
 
 header + div.content {
 	margin-bottom: 50px;
-	background: #F5F5F1;
+	background-color: #F5F5F1;
 	border-radius: 6px;
 	padding-bottom: 20px;
 
@@ -211,11 +211,53 @@ section.block {
 	&.checkpoint {
 		table {
 			width: 500px;
-			margin: inherit auto;
 
 			th {
 				width: 50%;
 			}
+
+			td.unimplemented {
+				color: #bd0000;
+			}
+
+			td.partial {
+				color: #da8e00;
+			}
+
+			td.complete {
+				color: green;
+			}
+
+			@media #{$small-title} {
+				width: 100%;
+
+				td, th {
+					display: inline-block;
+					width: 100%;
+					padding: 0px;
+				}
+
+				tr + tr > td:first-child {
+					margin-top: 15px;
+				}
+
+				th:first-child {
+					text-align: center;
+				}
+
+				th:nth-child(2) {
+					display: none;
+				}
+			}
+		}
+	}
+
+	a[href] {
+		color: #806000;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
 		}
 	}
 }
