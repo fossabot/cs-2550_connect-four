@@ -61,7 +61,7 @@ If desired/needed, I can apply tags for each assignment, so you know what I'm
 submitting for each one. I don't want to get ahead in class, and confuse you
 about what you're looking at.
 
-[1]: http://ryanp-me.github.io/cs-2550/connect-four/dist/ "GitHub Pages"
+[1]: http://ryanp-me.github.io/cs-2550/ "GitHub Pages"
 [2]: https://github.com/ryanp-me/cs-2550/tree/master/connect-four/app "GitHub Repository"
 
 ### Grading Criteria
@@ -78,8 +78,8 @@ Points | Requirement                                    | Notes
 10     | Styles in game description                     | [Yes][6]
 10     | Styles in game grid                            | [Yes][7]
 
-[3]: http://ryanp-me.github.io/cs-2550/connect-four/dist/game.html "game page"
-[4]: http://ryanp-me.github.io/cs-2550/connect-four/dist/design.html "design page"
+[3]: http://ryanp-me.github.io/cs-2550/game.html "game page"
+[4]: http://ryanp-me.github.io/cs-2550/design.html "design page"
 [5]: https://github.com/ryanp-me/cs-2550/tree/b4dde4394ef1885947ff76c4f8482d3aa193344c/connect-four/app/style.scss "stylesheet"
 [6]: https://github.com/ryanp-me/cs-2550/tree/b4dde4394ef1885947ff76c4f8482d3aa193344c/connect-four/app/index.html "styles in description"
 [7]: https://github.com/ryanp-me/cs-2550/tree/b4dde4394ef1885947ff76c4f8482d3aa193344c/connect-four/app/game.html "styles in game grid"
