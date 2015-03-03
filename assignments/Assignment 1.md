@@ -15,8 +15,8 @@ it. Is this okay as long as I include a compiled stylesheet? Although I'm mostly
 using it for nested selector rules, which I could go without, there are a few
 places where I use `@for` loops to generate some tedious animations. After SASS
 compiles this, (and I put it through auto-prefixer, which I talk about in my
-next question), it turns into 162 lines of somewhat compact CSS, which I'd prefer
-not writing by hand.
+next question), it turns into 162 lines of somewhat compact CSS, which I'd
+prefer not writing by hand.
 
   ```scss
   #connect-four {
@@ -54,25 +54,32 @@ in some browsers, but not others.
 
 ### Repository
 
-My assignment is being served on GitHub pages:
-[ryanp-me/cs-2550/connect-four/dist](http://ryanp-me.github.io/cs-2550/connect-four/dist/).  
-The repository for my code is also on GitHub:
-[ryanp-me/cs-2550/connect-four/app](https://github.com/ryanp-me/cs-2550/tree/master/connect-four/app).
+My assignment is being served on GitHub pages: [ryanp-me/cs-2550][1].
+The repository for my code is also on GitHub: [ryanp-me/cs-2550][2].
 
 If desired/needed, I can apply tags for each assignment, so you know what I'm
 submitting for each one. I don't want to get ahead in class, and confuse you
 about what you're looking at.
 
+[1]: http://ryanp-me.github.io/cs-2550/connect-four/dist/ "GitHub Pages"
+[2]: https://github.com/ryanp-me/cs-2550/tree/master/connect-four/app "GitHub Repository"
+
 ### Grading Criteria
 
 Points | Requirement                                    | Notes
 -------|------------------------------------------------|-------
-15     | Game description page (index.html)             | [Yes](http://ryanp-me.github.io/cs-2550/connect-four/dist/)
-5      | External Link                                  | [Yes (To Wikipedia)](http://ryanp-me.github.io/cs-2550/connect-four/dist/)
-5      | Image                                          | [Yes (From Wikipedia)](http://ryanp-me.github.io/cs-2550/connect-four/dist/)
-10     | Separate window                                | [Yes (Play Game)](http://ryanp-me.github.io/cs-2550/connect-four/dist/)
-15     | Game grid page with an HTML table for the grid | [Yes](http://ryanp-me.github.io/cs-2550/connect-four/dist/game.html)
-20     | Preliminary software design                    | [Yes](http://ryanp-me.github.io/cs-2550/connect-four/dist/design.html)
-10     | External style sheet                           | [Yes](https://github.com/ryanp-me/cs-2550/tree/master/connect-four/app/style.scss)
-10     | Styles in game description                     | [Yes](https://github.com/ryanp-me/cs-2550/tree/master/connect-four/app/index.html)
-10     | Styles in game grid                            | [Yes](https://github.com/ryanp-me/cs-2550/tree/master/connect-four/app/game.html)
+15     | Game description page (index.html)             | [Yes][1]
+5      | External Link                                  | [Yes (To Wikipedia)][1]
+5      | Image                                          | [Yes (From Wikipedia)][1]
+10     | Separate window                                | [Yes (Play Game)][1]
+15     | Game grid page with an HTML table for the grid | [Yes][3]
+20     | Preliminary software design                    | [Yes][4]
+10     | External style sheet                           | [Yes][5]
+10     | Styles in game description                     | [Yes][6]
+10     | Styles in game grid                            | [Yes][7]
+
+[3]: http://ryanp-me.github.io/cs-2550/connect-four/dist/game.html "game page"
+[4]: http://ryanp-me.github.io/cs-2550/connect-four/dist/design.html "design page"
+[5]: https://github.com/ryanp-me/cs-2550/tree/b4dde4394ef1885947ff76c4f8482d3aa193344c/connect-four/app/style.scss "stylesheet"
+[6]: https://github.com/ryanp-me/cs-2550/tree/b4dde4394ef1885947ff76c4f8482d3aa193344c/connect-four/app/index.html "styles in description"
+[7]: https://github.com/ryanp-me/cs-2550/tree/b4dde4394ef1885947ff76c4f8482d3aa193344c/connect-four/app/game.html "styles in game grid"
