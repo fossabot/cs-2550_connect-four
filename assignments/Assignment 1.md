@@ -54,7 +54,7 @@ in some browsers, but not others.
 
 ### Repository
 
-My assignment is being served on GitHub pages: [ryanp-me/cs-2550][1].
+My assignment is being served on GitHub pages: [ryanp-me/cs-2550][1].  
 The repository for my code is also on GitHub: [ryanp-me/cs-2550][2].
 
 If desired/needed, I can apply tags for each assignment, so you know what I'm

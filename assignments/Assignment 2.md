@@ -9,7 +9,7 @@ pass a default game state, but later on I could get this from local storage.
 
 ### Repository
 
-My assignment is being served on GitHub pages: [ryanp-me/cs-2550][1].
+My assignment is being served on GitHub pages: [ryanp-me/cs-2550][1].  
 The repository for my code is also on GitHub: [ryanp-me/cs-2550][2].
 
 [1]: http://ryanp-me.github.io/cs-2550/connect-four/dist/ "GitHub Pages"
