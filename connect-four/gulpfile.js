@@ -29,7 +29,7 @@ var onHint = function (file) {
 				return "(" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
 			}
 		}).join("\n");
-		
+
 		return file.relative + " (" + file.jshint.results.length + " errors)\n" + errors;
 	}
 };
@@ -81,7 +81,9 @@ gulp.task('default', ['build']);
 
 gulp.task('serve', ['watch'], function () {
 	browserSync({
-		proxy: 'connect4',
+		server: {
+			baseDir: 'dist'
+		},
 		debugInfo: false,
 		ghostMode: false
 	});
@@ -92,7 +94,7 @@ gulp.task('watch', ['build'], function (cb) {
 	gulp.watch('app/img/**/*.png', ['images']);
 	gulp.watch('app/css/**/*.scss', ['styles']);
 	gulp.watch(['../lib.js', 'app/js/**/*.js'], ['scripts']);
-	
+
 	if(argv._[0] == 'serve')
 	{
 		cb();

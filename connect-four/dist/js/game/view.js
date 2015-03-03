@@ -108,13 +108,13 @@ define('ConnectFour.view', function() {
 	View.prototype.attachMouseEventHandlers = function() {
 		var self = this;
 
-		this.board.onclick = function() {
+		this.board.addEventListener('click', function(e) {
 			if(this.emptying) {
-				return false;
+				return;
 			}
 
 			// find the cell to fill, and the new cell to highlight
-			var target = window.event.target;
+			var target = e.target;
 			var cells = self.findOpenSpaceForTarget.call(self, target, true);
 
 			if(cells) {
@@ -139,32 +139,37 @@ define('ConnectFour.view', function() {
 					}
 				}
 			}
+		});
 
-			return false;
-		};
-
-		this.board.onmouseover = function() {
+		this.board.addEventListener('mouseover', function(e) {
 			if(this.classList.contains('emptying')) {
 				return;
 			}
+
 			// find the cell to highlight
-			var target = window.event.target;
+			var target = e.target;
 			var highlight = self.findOpenSpaceForTarget.call(self, target);
 
 			if(highlight) {
 				highlight.classList.add('next');
 			}
-		};
+		});
 
-		this.board.onmouseout = function() {
+		this.board.addEventListener('mouseout', function(e) {
 			// find the cell to unhighlight
-			var target = window.event.target;
+			var target = e.target;
 			var highlight = self.findOpenSpaceForTarget.call(self, target);
 
 			if(highlight) {
 				highlight.classList.remove('next');
 			}
-		};
+		});
+
+		var button = this.game.parentNode.querySelector('button');
+
+		button.addEventListener('click', function(e) {
+			self.emit('restart');
+		});
 	};
 
 	// finds the next open space in the same column as a target

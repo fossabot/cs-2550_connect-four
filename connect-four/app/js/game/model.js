@@ -88,7 +88,7 @@ define('ConnectFour.model', function() {
 
 			if(winningCells) {
 				this.gameWon = true;
-				this.emit('winnerFound', winningCells, player)
+				this.emit('winnerFound', winningCells, player);
 			}
 
 			return true;
@@ -205,7 +205,7 @@ define('ConnectFour.model', function() {
 		else {
 			return false;
 		}
-	}
+	};
 
 	return Model;
 });

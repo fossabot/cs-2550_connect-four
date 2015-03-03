@@ -2,6 +2,10 @@ define('ConnectFour.controller', ['ConnectFour.model', 'ConnectFour.view'], func
 	'use strict';
 
 	function ConnectFour() {
+		this.initialize();
+	}
+
+	ConnectFour.prototype.initialize = function() {
 		var self = this;
 
 		this.data = new Model();
@@ -23,21 +27,21 @@ define('ConnectFour.controller', ['ConnectFour.model', 'ConnectFour.view'], func
 			self.view.winnerFound(cells, player);
 		});
 
-		this.view.on('clickCell', function(cell) {
-			return self.data.makeMove(cell);
-		});
-
 		this.data.on('restart', function(state) {
 			self.view.flip(function() {
 				self.view.loadBoard(state);
 			});
 		});
 
-		this.data.loadSampleBoard();
-	}
+		this.view.on('clickCell', function(cell) {
+			return self.data.makeMove(cell);
+		});
 
-	ConnectFour.prototype.restart = function() {
-		this.data.restart();
+		this.view.on('restart', function() {
+			self.data.restart();
+		});
+
+		this.data.loadSampleBoard();
 	};
 
 	return ConnectFour;
@@ -45,6 +49,6 @@ define('ConnectFour.controller', ['ConnectFour.model', 'ConnectFour.view'], func
 
 $(function() {
 	require('ConnectFour.controller', function(ConnectFour) {
-		window.game = new ConnectFour();
+		new ConnectFour();
 	});
 });
