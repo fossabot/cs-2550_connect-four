@@ -1,11 +1,18 @@
 /* Connect Four Styles */
 
+$small: "screen and (max-width: 760px)";
+$small-title: "screen and (max-width: 600px)";
+
 $helvetica-neue:  "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 $helvetica-neue: "HelveticaNeue-Light", "Helvetica Neue Light", $helvetica-neue;
 
 html, body {
 	margin: 0px;
 	padding: 0px;
+}
+
+a {
+  word-wrap: break-word;
 }
 
 body {
@@ -53,6 +60,8 @@ header {
 		color: #888;
 
 		ul {
+			position: relative;
+			top: -8px;
 			list-style: none;
 			margin: 0px;
 			padding: 0px;
@@ -64,6 +73,25 @@ header {
 
 			&.active {
 				font-weight: bold;
+			}
+		}
+	}
+
+	@media #{$small-title} {
+		border-top: none;
+		margin: 60px auto 20px auto;
+
+		h1 {
+			font-size: 40px;
+		}
+	}
+
+	@media #{$small} {
+		margin-bottom: 20px;
+		nav {
+			ul li {
+				display: block;
+				margin-bottom: 15px;
 			}
 		}
 	}

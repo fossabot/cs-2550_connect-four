@@ -1,6 +1,6 @@
 /* Styles used only for the game page */
 
-$grid-cell-size: 50px;
+$grid-cell-size: 40px;
 $grid-width: 7;
 $grid-height: 6;
 
@@ -19,6 +19,7 @@ $black-hover-gradient: radial-gradient(50% 50% , rgba(0, 0, 0, 0.25) 75%, transp
 }
 
 #connect-four {
+	margin-top: 32px;
 	perspective: 1000;
 
 	table {
@@ -100,7 +101,17 @@ $black-hover-gradient: radial-gradient(50% 50% , rgba(0, 0, 0, 0.25) 75%, transp
 		}
 	}
 
-	&:not(.emptying) {
+	&.won {
+		td:not(.winning-cell)[data-player="red"]:before {
+			background-image: $red-hover-gradient;
+		}
+
+		td:not(.winning-cell)[data-player="black"]:before {
+			background-image: $black-hover-gradient;
+		}
+	}
+
+	&:not(.emptying):not(.won) {
 		&[data-turn="red"] td.next:before {
 			background-image: $red-hover-gradient;
 		}

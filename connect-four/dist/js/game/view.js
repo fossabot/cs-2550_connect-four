@@ -58,16 +58,29 @@ define('ConnectFour.view', function() {
 		}
 		else if(this.cells[cell.y][cell.x].dataset.player) {
 			delete this.cells[cell.y][cell.x].dataset.player;
+			this.cells[cell.y][cell.x].classList.remove('winning-cell');
 		}
 	};
 
 	View.prototype.setTurn = function(player) {
 		this.game.dataset.turn = player;
+		this.game.classList.remove('won');
+	};
+
+	View.prototype.winnerFound = function(cells, player) {
+		var self = this;
+
+		cells.forEach(function(cell) {
+			self.cells[cell.y][cell.x].classList.add('winning-cell');
+		});
+
+		this.game.classList.add('won');
 	};
 
 	View.prototype.flip = function(mid_cb, end_cb) {
 		var self = this;
 		this.game.classList.add('emptying');
+		this.emptying = true;
 
 		setTimeout(function() {
 			if(mid_cb) {
@@ -82,6 +95,7 @@ define('ConnectFour.view', function() {
 		}, 1000);
 
 		setTimeout(function() {
+			self.emptying = false;
 			self.game.classList.remove('emptying');
 
 			if(end_cb) {
@@ -95,16 +109,28 @@ define('ConnectFour.view', function() {
 		var self = this;
 
 		this.board.onclick = function() {
+			if(this.emptying) {
+				return false;
+			}
+
 			// find the cell to fill, and the new cell to highlight
 			var target = window.event.target;
 			var cells = self.findOpenSpaceForTarget.call(self, target, true);
 
 			if(cells) {
 				var fill = cells[0];
-				var highlight = cells[1];
+				var highlight = null;
 
 				if(fill) {
-					fill.classList.remove('next');
+					if(fill.classList.contains('next')) {
+						fill.classList.remove('next');
+						highlight = cells[1];
+					} else {
+						// Don't highlight the next cell if the current one wasn't highlighted.
+						// This happens on mobile devices.
+
+						highlight = null;
+					}
 
 					if(self.emit('clickCell', {x: +fill.dataset.x, y: +fill.dataset.y})) {
 						if(highlight) {
@@ -113,6 +139,8 @@ define('ConnectFour.view', function() {
 					}
 				}
 			}
+
+			return false;
 		};
 
 		this.board.onmouseover = function() {

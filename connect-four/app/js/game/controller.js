@@ -19,6 +19,10 @@ define('ConnectFour.controller', ['ConnectFour.model', 'ConnectFour.view'], func
 			self.view.setTurn(player);
 		});
 
+		this.data.on('winnerFound', function(cells, player) {
+			self.view.winnerFound(cells, player);
+		});
+
 		this.view.on('clickCell', function(cell) {
 			return self.data.makeMove(cell);
 		});
