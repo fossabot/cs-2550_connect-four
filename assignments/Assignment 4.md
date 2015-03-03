@@ -20,9 +20,9 @@ Points | Requirement                                                            
 20     | Uses JS and CSS to position and animate an HTML element                     | [Yes][7] (CSS animations)
 25     | Includes a checkpoint.html file with progress report                        | [Yes][8]
 
-[3]: https://github.com/ryanp-me/cs-2550/blob/23343ffb88743b411a9ef5edca1c5368ba68852a/connect-four/app/js/game/view.js#L111-144 "onclick handlers"
-[4]: https://github.com/ryanp-me/cs-2550/blob/23343ffb88743b411a9ef5edca1c5368ba68852a/connect-four/app/js/game/view.js#L54-L63 "style modification"
-[5]: https://github.com/ryanp-me/cs-2550/blob/23343ffb88743b411a9ef5edca1c5368ba68852a/connect-four/app/game.html#L25 "required elements"
+[3]: https://github.com/ryanp-me/cs-2550/blob/2637f55e23e4ae13ff0f009fdd2b71d69587dd9f/connect-four/app/js/game/view.js#L111-142 "onclick handlers"
+[4]: https://github.com/ryanp-me/cs-2550/blob/2637f55e23e4ae13ff0f009fdd2b71d69587dd9f/connect-four/app/js/game/view.js#L54-L63 "style modification"
+[5]: https://github.com/ryanp-me/cs-2550/blob/2637f55e23e4ae13ff0f009fdd2b71d69587dd9f/connect-four/app/game.html#L25 "required elements"
 [6]: http://ryanp-me.github.io/cs-2550/game.html "reset button"
-[7]: https://github.com/ryanp-me/cs-2550/blob/23343ffb88743b411a9ef5edca1c5368ba68852a/connect-four/app/css/game.scss#L131-L165 "animations"
+[7]: https://github.com/ryanp-me/cs-2550/blob/2637f55e23e4ae13ff0f009fdd2b71d69587dd9f/connect-four/app/css/game.scss#L131-L165 "animations"
 [8]: http://ryanp-me.github.io/cs-2550/checkpoint.html "checkpoint"
