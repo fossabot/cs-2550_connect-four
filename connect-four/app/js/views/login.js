@@ -6,7 +6,7 @@ define('views/login', ['base'], function(Base) {
 			var self = this;
 
 			this.form = $('#login').element;
-			this.form.querySelector('input[name="username"]').focus();
+			// this.form.querySelector('input[name="username"]').focus();
 
 			this.form.addEventListener('submit', function(e) {
 				self.events['submit login'].call(self, e);
@@ -53,15 +53,13 @@ define('views/login', ['base'], function(Base) {
 				container.innerText = error.message;
 
 				// shake login
+				var form = this.form;
+				form.classList.add('error');
+				form.classList.remove('shake');
 
-				// first, remove the error class if it exists
-				this.form.classList.remove('error');
-
-				// now, cause a reflow. without this, the change won't be respected
-				this.form.offsetWidth = this.form.offsetWidth;
-
-				// now, readd the error
-				this.form.classList.add('error');
+				setTimeout(function() {
+					form.classList.add('shake');
+				}, 0);
 			}
 		}
 	});
