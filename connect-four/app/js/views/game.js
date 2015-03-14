@@ -12,8 +12,14 @@ define('views/game', ['view'], function(View) {
 		},
 
 		setUser: function(user) {
-			$('.username', this.accountInfo).text(user.username);
-			$('.timestamp', this.accountInfo).text(user.timestamp);
+			if(user) {
+				$('.username', this.accountInfo).text(user.username);
+				$('.timestamp', this.accountInfo).text(user.timestamp);
+			}
+			else {
+				$('button#logout', this.game.parentNode).remove();
+				this.accountInfo.remove();
+			}
 		},
 
 		// creates the DOM for the board

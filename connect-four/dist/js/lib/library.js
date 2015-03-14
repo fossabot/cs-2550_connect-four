@@ -78,6 +78,19 @@ define('lib', function() {
 			}
 		};
 
+		ElementDescriptor.prototype.remove = function() {
+			var remove = function(e) {
+				e.parentNode.removeChild(e);
+			};
+
+			if(this.isArray) {
+				this.elements.forEach(remove);
+			}
+			else if(this.element) {
+				remove(this.element);
+			}
+		};
+
 		return ElementDescriptor;
 	})();
 

@@ -54,6 +54,9 @@ define('controllers/game', [
 			if(this.user.isLoggedIn()) {
 				this.view.setUser(this.user);
 			}
+			else {
+				this.view.setUser(null);
+			}
 		}
 	});
 
