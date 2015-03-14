@@ -1,8 +1,8 @@
-define('views/game', ['base'], function(Base) {
+define('views/game', ['view'], function(View) {
 	'use strict';
 
-	var GameView = Base.extend({
-		constructor: function() {
+	var GameView = View.extend({
+		initialize: function() {
 			this.game = $('#connect-four').element;
 			this.board = document.createElement('table');
 			this.game.appendChild(this.board);

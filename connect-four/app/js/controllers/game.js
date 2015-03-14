@@ -1,8 +1,12 @@
-define('controllers/game', ['base', 'models/game', 'views/game'], function(Base, Model, View) {
+define('controllers/game', [
+	'controller',
+	'models/game',
+	'views/game'
+], function(Controller, Model, View) {
 	'use strict';
 
-	var GameController = Base.extend({
-		constructor: function() {
+	var GameController = Controller.extend({
+		initialize: function() {
 			var self = this;
 
 			this.data = new Model();

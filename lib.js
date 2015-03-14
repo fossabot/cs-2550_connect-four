@@ -162,62 +162,64 @@ define('lib', function() {
 	return executor;
 });
 
-// allow using on and emit
-define('base', function() {
-	'use strict';
-
-	var functions = {
-		on: function(event, fn) {
-			if(!this._listeners) {
-				this._listeners = {};
-			}
-
-			if(!this._listeners[event]) {
-				this._listeners[event] = [];
-			}
-
-			this._listeners[event].push(fn);
-		},
-		emit: function(event) {
-			var args = Array.prototype.slice.call(arguments, 1);
-			var success = true;
-
-			if(this._listeners && this._listeners[event]) {
-				this._listeners[event].forEach(function(listener) {
-					if(listener.apply(this, args) === false) {
-						success = false;
-					}
-				});
-			}
-
-			return success;
-		}
-	};
-
-	function extend(properties) {
-		var constructor = properties.constructor;
-		delete properties.constructor;
-
-		var child = function() {
-			constructor.apply(this, arguments);
-		};
-
-		child.prototype.on = functions.on;
-		child.prototype.emit = functions.emit;
-
-		for(var key in properties)
-		{
-			child.prototype[key] = properties[key];
-		}
-
-		return child;
-	}
-
-	return {
-		extend: extend
-	};
-});
-
 // I know this kinda defeats the purpose of using require, but
 // I'm not quite ready to switch to it yet. I'm too attached to $
 window.$ = require('lib');
+
+// allow using inheritance easily
+define('extend', function() {
+	'use strict';
+
+	var ExtendConstructor = function() { };
+
+	var extend = function(prototypeProperties, staticProperties) {
+		var parent = this;
+		var child, key;
+
+		if(prototypeProperties && prototypeProperties.hasOwnProperty('constructor')) {
+			// we're overriding the constructor
+			child = prototypeProperties.constructor;
+		}
+		else {
+			// we're reusing the original constructor
+
+			child = function() {
+				parent.apply(this, arguments);
+			};
+		}
+
+		// inherit static properties from the parent
+		for(key in parent) {
+			child[key] = parent[key];
+		}
+
+		// We need to setup the prototype chain to inherit from the parent
+		// prototype, but without actually calling the constructor
+		ExtendConstructor.prototype = parent.prototype;
+		child.prototype = new ExtendConstructor();
+
+		// add any prototype properties
+		if(prototypeProperties) {
+			for(key in prototypeProperties) {
+				child.prototype[key] = prototypeProperties[key];
+			}
+		}
+
+		// add any static properties
+		if(staticProperties) {
+			for(key in staticProperties) {
+				child[key] = staticProperties[key];
+			}
+		}
+
+		// save the actual constructor
+		child.prototype.constructor = child;
+
+		// set a property that can be used to get the parent prototype if needed
+		child.__super__ = parent.prototype;
+
+	    return child;
+	};
+
+	return extend;
+});

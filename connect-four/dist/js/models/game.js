@@ -1,4 +1,4 @@
-define('models/game', ['base'], function(Base) {
+define('models/game', ['model'], function(Model) {
 	'use strict';
 
 	var PLAYER = {
@@ -6,8 +6,8 @@ define('models/game', ['base'], function(Base) {
 		BLACK: 'black'
 	};
 
-	var GameModel = Base.extend({
-		constructor: function() {
+	var GameModel = Model.extend({
+		initialize: function() {
 			this.width = 7;
 			this.height = 6;
 			this.restart();
