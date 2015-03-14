@@ -1,20 +1,20 @@
-define('ConnectFour.model', function() {
+define('models/game', function() {
 	'use strict';
 
-	function Model() {
+	function GameModel() {
 		this.width = 7;
 		this.height = 6;
 		this.restart();
 	}
 
-	var PLAYER = Model.PLAYER = {
+	var PLAYER = GameModel.PLAYER = {
 		RED: 'red',
 		BLACK: 'black'
 	};
 
-	Model.prototype = require('EventEmitterFactory')();
+	GameModel.prototype = require('EventEmitterFactory')();
 
-	Model.prototype.loadSampleBoard = function() {
+	GameModel.prototype.loadSampleBoard = function() {
 		var RED = PLAYER.RED;
 		var BLACK = PLAYER.BLACK;
 
@@ -31,7 +31,7 @@ define('ConnectFour.model', function() {
 		});
 	};
 
-	Model.prototype.loadBoard = function(state) {
+	GameModel.prototype.loadBoard = function(state) {
 		if(state.board.length != this.height || state.board[0].length != this.width) {
 			throw 'You can only restore a game that matches the dimensions used during initialization';
 		}
@@ -41,7 +41,7 @@ define('ConnectFour.model', function() {
 		this.emit('loadBoard', state);
 	};
 
-	Model.prototype.restart = function() {
+	GameModel.prototype.restart = function() {
 		this.turn = PLAYER.RED;
 		this.board = [];
 		this.gameWon = false;
@@ -60,7 +60,7 @@ define('ConnectFour.model', function() {
 		});
 	};
 
-	Model.prototype.setCell = function(cell, player) {
+	GameModel.prototype.setCell = function(cell, player) {
 		if(cell.y === (this.height - 1) || this.board[cell.y + 1][cell.x] !== null) {
 			this.board[cell.y][cell.x] = player;
 			this.emit('setCell', cell, player);
@@ -69,12 +69,12 @@ define('ConnectFour.model', function() {
 		}
 	};
 
-	Model.prototype.setTurn = function(turn) {
+	GameModel.prototype.setTurn = function(turn) {
 		this.turn = turn;
 		this.emit('setTurn', turn);
 	};
 
-	Model.prototype.makeMove = function(cell) {
+	GameModel.prototype.makeMove = function(cell) {
 		var player = this.turn;
 
 		if(this.gameWon) {
@@ -98,7 +98,7 @@ define('ConnectFour.model', function() {
 		}
 	};
 
-	Model.prototype.checkForWinner = function(cell, player) {
+	GameModel.prototype.checkForWinner = function(cell, player) {
 		var considerCell = function(y, x) {
 			if(cells.length === 4) {
 				return false;
@@ -207,5 +207,5 @@ define('ConnectFour.model', function() {
 		}
 	};
 
-	return Model;
+	return GameModel;
 });

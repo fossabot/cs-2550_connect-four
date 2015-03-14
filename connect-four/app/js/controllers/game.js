@@ -1,11 +1,11 @@
-define('ConnectFour.controller', ['ConnectFour.model', 'ConnectFour.view'], function(Model, View) {
+define('controllers/game', ['models/game', 'views/game'], function(Model, View) {
 	'use strict';
 
-	function ConnectFour() {
+	function GameController() {
 		this.initialize();
 	}
 
-	ConnectFour.prototype.initialize = function() {
+	GameController.prototype.initialize = function() {
 		var self = this;
 
 		this.data = new Model();
@@ -44,11 +44,11 @@ define('ConnectFour.controller', ['ConnectFour.model', 'ConnectFour.view'], func
 		this.data.loadSampleBoard();
 	};
 
-	return ConnectFour;
+	return GameController;
 });
 
 $(function() {
-	require('ConnectFour.controller', function(ConnectFour) {
-		new ConnectFour();
+	require('controllers/game', function(GameController) {
+		new GameController();
 	});
 });

@@ -143,14 +143,14 @@ section.block h3 {
 section.block h4 {
   font-weight: normal;
   margin-bottom: 6px; }
-section.block > p, section.block > div {
+section.block > p, section.block > div, section.block > form {
   border-radius: 5px;
   background-color: white;
   margin: 0px;
   padding: 15px 15px; }
 section.block > p {
   margin: 0px; }
-section.block > div p {
+section.block > div p, section.block > form p {
   margin: 0px; }
 section.block.checkpoint table {
   width: 500px; }
@@ -175,6 +175,32 @@ section.block.checkpoint table {
         text-align: center; }
       section.block.checkpoint table th:nth-child(2) {
         display: none; } }
+section.block.login {
+  margin: 0 auto;
+  max-width: 400px; }
+  section.block.login input {
+    box-sizing: border-box;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #d6d6d6; }
+  section.block.login input[type="text"], section.block.login input[type="password"] {
+    width: 100%;
+    margin: 0px 0px 20px 0px;
+    background-color: #FDFDFD; }
+    section.block.login input[type="text"]:focus, section.block.login input[type="password"]:focus {
+      border: 1px solid #aaa;
+      background-color: white; }
+  section.block.login input[type="submit"] {
+    width: 50%;
+    margin: 0px auto;
+    background-color: #F5F5F5; }
+    section.block.login input[type="submit"]:hover {
+      background-color: #ededed; }
+    section.block.login input[type="submit"]:active {
+      background-color: #e1e1e1; }
 section.block a[href] {
   color: #806000;
   text-decoration: none; }

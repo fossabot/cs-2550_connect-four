@@ -1,7 +1,7 @@
-define('ConnectFour.view', function() {
+define('views/game', function() {
 	'use strict';
 
-	function View() {
+	function GameView() {
 		this.game = $('#connect-four').element;
 		this.board = document.createElement('table');
 		this.game.appendChild(this.board);
@@ -9,10 +9,10 @@ define('ConnectFour.view', function() {
 		this.attachMouseEventHandlers();
 	}
 
-	View.prototype = require('EventEmitterFactory')();
+	GameView.prototype = require('EventEmitterFactory')();
 
 	// creates the DOM for the board
-	View.prototype.generateBoard = function(board) {
+	GameView.prototype.generateBoard = function(board) {
 		// remove any existing rows
 		while(this.board.firstChild) {
 			this.board.removeChild(this.board.firstChild);
@@ -43,7 +43,7 @@ define('ConnectFour.view', function() {
 		this.cells = cells;
 	};
 
-	View.prototype.loadBoard = function(state) {
+	GameView.prototype.loadBoard = function(state) {
 		this.height = state.board.length;
 		this.width = state.board[0].length;
 
@@ -51,7 +51,7 @@ define('ConnectFour.view', function() {
 		this.generateBoard(state.board);
 	};
 
-	View.prototype.setCell = function(cell, state) {
+	GameView.prototype.setCell = function(cell, state) {
 		if(state !== null) {
 			this.cells[cell.y][cell.x].dataset.player = state;
 			this.cells[cell.y][cell.x].classList.remove('next');
@@ -62,12 +62,12 @@ define('ConnectFour.view', function() {
 		}
 	};
 
-	View.prototype.setTurn = function(player) {
+	GameView.prototype.setTurn = function(player) {
 		this.game.dataset.turn = player;
 		this.game.classList.remove('won');
 	};
 
-	View.prototype.winnerFound = function(cells, player) {
+	GameView.prototype.winnerFound = function(cells, player) {
 		var self = this;
 
 		cells.forEach(function(cell) {
@@ -77,7 +77,7 @@ define('ConnectFour.view', function() {
 		this.game.classList.add('won');
 	};
 
-	View.prototype.flip = function(mid_cb, end_cb) {
+	GameView.prototype.flip = function(mid_cb, end_cb) {
 		var self = this;
 		this.game.classList.add('emptying');
 		this.emptying = true;
@@ -105,7 +105,7 @@ define('ConnectFour.view', function() {
 	};
 
 	// attaches the mouse event handlers
-	View.prototype.attachMouseEventHandlers = function() {
+	GameView.prototype.attachMouseEventHandlers = function() {
 		var self = this;
 
 		this.board.addEventListener('click', function(e) {
@@ -173,7 +173,7 @@ define('ConnectFour.view', function() {
 	};
 
 	// finds the next open space in the same column as a target
-	View.prototype.findOpenSpaceForTarget = function(target, find_prev) {
+	GameView.prototype.findOpenSpaceForTarget = function(target, find_prev) {
 		var prev = null;
 		var next = null;
 
@@ -204,5 +204,5 @@ define('ConnectFour.view', function() {
 		}
 	};
 
-	return View;
+	return GameView;
 });

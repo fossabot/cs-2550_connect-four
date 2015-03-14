@@ -10,7 +10,7 @@
 		<h1><a href="./">Connect Four</a></h1>
 		<nav>
 			<ul>
-				<li><a href="game.html">Play Game</a></li>
+				<li class="active"><a href="./">Play Game</a></li>
 				<li><a href="design.html">Preliminary Design</a></li>
 				<li><a href="checkpoint.html">Checkpoint</a></li>
 				<li><a href="http://en.wikipedia.org/wiki/Connect_Four" target="_blank">Game Information</a></li>
@@ -20,14 +20,19 @@
 
 	<div class="content">
 		<div class="wrapper">
-			<section class="block">
-				<h2>Game Play</h2>
-				<p style="float:left">
-					Connect Four is a two player game in which players alternate turns dropping
-					colored disks into a grid. Each player is assigned a color, and to win the
-					game, a player must connect four disks of their color horizontally, vertically,
-					or diagonally. The first player to do this wins.
-				</p>
+			<section id="game-play" class="block-container">
+				<h2><a name="login">Login</a></h2>
+
+				<section class="login block">
+					<form id="login">
+						<p>
+							<input type="text" name="username" placeholder="Username:" />
+							<input type="password" name="password" placeholder="Password:" />
+
+							<input type="submit" value="Login" />
+						</p>
+					</form>
+				</section>
 			</section>
 		</div>
 	</div>
@@ -47,6 +52,12 @@
 		</div>
 	</footer>
 
-	<script src="js/fastclick.min.js"></script>
+	<script src="js/lib/fastclick.js"></script>
+	<script src="js/lib/require.js"></script>
+	<script src="js/lib/library.js"></script>
+
+	<script src="js/views/login.js"></script>
+	<script src="js/models/login.js"></script>
+	<script src="js/controllers/login.js"></script>
 </body>
 </html>

@@ -23,7 +23,7 @@ var onError = function(err) {
 };
 
 var onHint = function (file) {
-	if (!file.jshint.success) {
+	if (file.jshint && !file.jshint.success) {
 		var errors = file.jshint.results.map(function (data) {
 			if (data.error) {
 				return "(" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
