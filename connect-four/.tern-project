@@ -1,0 +1,22 @@
+{
+    "libs": [
+        "browser",
+        "ecma5"
+    ],
+    "loadEagerly": [
+        "app/js/lib/library.js"
+    ],
+    "plugins": {
+        "complete_strings": {},
+        "doc_comment": {
+            "fullDocs": true
+        },
+        "requirejs": {
+            "baseURL": "./app/js",
+            "paths": {
+                "lib": "lib/library",
+                "base": "lib/library"
+            }
+        }
+    }
+}
