@@ -1,5 +1,15 @@
 # Assignment 4
 
+### Remarks
+
+1.	For the requirement that states a message must be displayed that includes
+	the coordinates of a clicked cell, I figure the fact that my game is
+	playable should be enough.
+
+2.	I can't think of any way to incorporate a select button in my game, so I
+	didn't. Maybe I'll end up using one for multiplayer, but even then, select
+	buttons are miserably hard to style, so I would likely use something else.
+
 ### Repository
 
 My assignment is being served on GitHub pages: [ryanp-me/cs-2550][1].  
