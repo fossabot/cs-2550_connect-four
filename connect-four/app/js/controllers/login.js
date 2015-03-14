@@ -13,14 +13,24 @@ define('controllers/login', [
 			this.user = new User();
 
 			this.view.on('login', function(options) {
-				self.user.login(options, function(error, info) {
-					if(error) {
-						self.view.events.error.call(self.view, error);
-					}
-					else {
+				self.login(options);
+			});
 
-					}
-				});
+			this.user.on('error', function(error) {
+				self.view.trigger('error', info);
+			});
+		},
+
+		login: function(options) {
+			var self = this;
+			
+			this.user.login(options, function(error, info) {
+				if(error) {
+					self.view.trigger('error', error);
+				}
+				else {
+					window.location.href = 'game.html';
+				}
 			});
 		}
 	});

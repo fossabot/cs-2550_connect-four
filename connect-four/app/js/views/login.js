@@ -48,6 +48,20 @@ define('views/login', ['base'], function(Base) {
 				else {
 					password.focus();
 				}
+
+				var container = this.form.querySelector('.error');
+				container.innerText = error.message;
+
+				// shake login
+
+				// first, remove the error class if it exists
+				this.form.classList.remove('error');
+
+				// now, cause a reflow. without this, the change won't be respected
+				this.form.offsetWidth = this.form.offsetWidth;
+
+				// now, readd the error
+				this.form.classList.add('error');
 			}
 		}
 	});

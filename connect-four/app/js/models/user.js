@@ -16,6 +16,7 @@ define('models/user', ['base'], function(Base) {
 					var response = JSON.parse(http.responseText);
 
 					if(response.result === 'invalid') {
+						response.message = "The username or password you entered is invalid.";
 						callback(response, null);
 					}
 					else {
