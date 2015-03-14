@@ -1,15 +1,13 @@
-define('controllers/login', ['models/user', 'views/login'], function(User, View) {
+define('controllers/login', ['base', 'models/user', 'views/login'], function(Base, User, View) {
 	'use strict';
 
-	function LoginController() {
-		this.initialize();
-	}
-
-	LoginController.prototype.initialize = function() {
-		var self = this;
-
-		this.view = new View();
-	};
+	var LoginController = Base.extend({
+		constructor: function() {
+			var self = this;
+			
+			this.view = new View();
+		}
+	});
 
 	return LoginController;
 });

@@ -163,10 +163,10 @@ define('lib', function() {
 });
 
 // allow using on and emit
-define('EventEmitter', function() {
+define('base', function() {
 	'use strict';
 
-	return {
+	var functions = {
 		on: function(event, fn) {
 			if(!this._listeners) {
 				this._listeners = {};
@@ -193,13 +193,28 @@ define('EventEmitter', function() {
 			return success;
 		}
 	};
-});
 
-define('EventEmitterFactory', ['EventEmitter'], function(em) {
-	'use strict';
+	function extend(properties) {
+		var constructor = properties.constructor;
+		delete properties.constructor;
 
-	return function() {
-		return Object.create(em);
+		var child = function() {
+			constructor.apply(this, arguments);
+		};
+
+		child.prototype.on = functions.on;
+		child.prototype.emit = functions.emit;
+
+		for(var key in properties)
+		{
+			child.prototype[key] = properties[key];
+		}
+
+		return child;
+	}
+
+	return {
+		extend: extend
 	};
 });
 

@@ -1,9 +1,11 @@
-define('models/user', function() {
+define('models/user', ['base'], function(Base) {
 	'use strict';
 
-	function User() {
+	var User = Base.extend({
+		constructor: function() {
 
-	}
+		}
+	});
 
 	return User;
 });

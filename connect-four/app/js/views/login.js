@@ -1,15 +1,21 @@
-define('views/login', function() {
+define('views/login', ['base'], function(Base) {
 	'use strict';
 
-	function LoginView() {
-		this.form = $('#login').element;
+	var LoginView = Base.extend({
+		constructor: function() {
+			this.initialize();
+		},
 
-		this.form.addEventListener('submit', function(e) {
-			e.preventDefault();
-			
-			window.location.href = 'game.html';
-		});
-	}
+		initialize: function() {
+			this.form = $('#login').element;
+
+			this.form.addEventListener('submit', function(e) {
+				e.preventDefault();
+
+				window.location.href = 'game.html';
+			});
+		}
+	});
 
 	return LoginView;
 });
