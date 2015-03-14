@@ -23,7 +23,7 @@ define('controllers/login', [
 
 		login: function(options) {
 			var self = this;
-			
+
 			this.user.login(options, function(error, info) {
 				if(error) {
 					self.view.trigger('error', error);

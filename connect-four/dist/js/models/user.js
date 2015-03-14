@@ -4,7 +4,26 @@ define('models/user', ['model'], function(Model) {
 	var User = Model.extend({
 		loginURL: 'http://universe.tc.uvu.edu/cs2550/assignments/PasswordCheck/check.php',
 
+		initialize: function() {
+			var info = window.localStorage.getItem('cs2550timestamp');
+
+			if(info) {
+				info = JSON.parse(info);
+				this.username = info.username;
+				this.timestamp = info.timestamp;
+			}
+			else {
+				this.username = null;
+				this.timestamp = null;
+			}
+		},
+
+		isLoggedIn: function() {
+			return (this.username !== null);
+		},
+
 		login: function(options, callback) {
+			var self = this;
 			var http = new XMLHttpRequest();
 			var post = 'userName=' + options.username + '&password=' + options.password;
 
@@ -20,12 +39,25 @@ define('models/user', ['model'], function(Model) {
 						callback(response, null);
 					}
 					else {
-						window.location.href = 'game.html';
+						var info = {
+							username: response.userName,
+							timestamp: response.timestamp
+						};
+
+						self.username = info.username;
+						self.timestamp = info.timestamp;
+
+						window.localStorage.setItem('cs2550timestamp', JSON.stringify(info));
+						callback(null, response);
 					}
 				}
 			};
 
 			http.send(post);
+		},
+
+		logout: function() {
+			window.localStorage.removeItem('cs2550timestamp');
 		}
 	});
 

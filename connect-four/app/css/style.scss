@@ -170,6 +170,7 @@ footer {
 		float:left;
 		margin-top: 6px;
 	}
+
 	.code {
 		float: right;
 		margin-top: 9px;
@@ -194,6 +195,51 @@ h2 {
 
 .block-container:after {
 	clear: both;
+}
+
+input, button {
+	box-sizing: border-box;
+
+	padding: 10px;
+	border-radius: 5px;
+
+	outline: none;
+	box-shadow: none;
+	border: 1px solid #d6d6d6;
+
+	-webkit-appearance: none;
+}
+
+input[type="text"], input[type="password"] {
+	margin: 0px 0px 20px 0px;
+	background-color: #FDFDFD;
+
+	&:focus {
+		border: 1px solid #aaa;
+		background-color: white;
+	}
+
+}
+
+input[type="submit"], input[type="button"], button {
+	margin: 0px auto;
+	background-color: #F5F5F5;
+
+	&:hover {
+		background-color: darken(#F5F5F5, 3%);
+	}
+
+	&:active {
+		background-color: darken(#F5F5F5, 8%);
+	}
+}
+
+th {
+	text-align: left;
+}
+
+th + th, td + td {
+	padding-left: 20px;
 }
 
 section.block {
@@ -274,43 +320,15 @@ section.block {
 		max-width: 400px;
 
 		input {
-			box-sizing: border-box;
-
 			display: block;
-			padding: 10px;
-			border-radius: 5px;
-
-			outline: none;
-			box-shadow: none;
-			border: 1px solid #d6d6d6;
-
-			-webkit-appearance: none;
 		}
 
 		input[type="text"], input[type="password"] {
 			width: 100%;
-			margin: 0px 0px 20px 0px;
-			background-color: #FDFDFD;
-
-			&:focus {
-				border: 1px solid #aaa;
-				background-color: white;
-			}
-
 		}
 
-		input[type="submit"] {
+		input[type="submit"], input[type="button"], button {
 			width: 50%;
-			margin: 0px auto;
-			background-color: #F5F5F5;
-
-			&:hover {
-				background-color: darken(#F5F5F5, 3%);
-			}
-
-			&:active {
-				background-color: darken(#F5F5F5, 8%);
-			}
 		}
 
 		p.error {
@@ -340,14 +358,6 @@ section.block {
 			text-decoration: underline;
 		}
 	}
-}
-
-th {
-	text-align: left;
-}
-
-th + th, td + td {
-	padding-left: 20px;
 }
 
 @keyframes shake {

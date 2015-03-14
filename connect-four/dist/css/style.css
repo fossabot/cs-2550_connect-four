@@ -148,6 +148,36 @@ h2 {
 .block-container:after {
   clear: both; }
 
+input, button {
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: none;
+  border: 1px solid #d6d6d6;
+  -webkit-appearance: none; }
+
+input[type="text"], input[type="password"] {
+  margin: 0px 0px 20px 0px;
+  background-color: #FDFDFD; }
+  input[type="text"]:focus, input[type="password"]:focus {
+    border: 1px solid #aaa;
+    background-color: white; }
+
+input[type="submit"], input[type="button"], button {
+  margin: 0px auto;
+  background-color: #F5F5F5; }
+  input[type="submit"]:hover, input[type="button"]:hover, button:hover {
+    background-color: #ededed; }
+  input[type="submit"]:active, input[type="button"]:active, button:active {
+    background-color: #e1e1e1; }
+
+th {
+  text-align: left; }
+
+th + th, td + td {
+  padding-left: 20px; }
+
 section.block h3 {
   color: #CECBB6;
   font-weight: normal;
@@ -191,29 +221,11 @@ section.block.login {
   margin: 0 auto;
   max-width: 400px; }
   section.block.login input {
-    box-sizing: border-box;
-    display: block;
-    padding: 10px;
-    border-radius: 5px;
-    outline: none;
-    box-shadow: none;
-    border: 1px solid #d6d6d6;
-    -webkit-appearance: none; }
+    display: block; }
   section.block.login input[type="text"], section.block.login input[type="password"] {
-    width: 100%;
-    margin: 0px 0px 20px 0px;
-    background-color: #FDFDFD; }
-    section.block.login input[type="text"]:focus, section.block.login input[type="password"]:focus {
-      border: 1px solid #aaa;
-      background-color: white; }
-  section.block.login input[type="submit"] {
-    width: 50%;
-    margin: 0px auto;
-    background-color: #F5F5F5; }
-    section.block.login input[type="submit"]:hover {
-      background-color: #ededed; }
-    section.block.login input[type="submit"]:active {
-      background-color: #e1e1e1; }
+    width: 100%; }
+  section.block.login input[type="submit"], section.block.login input[type="button"], section.block.login button {
+    width: 50%; }
   section.block.login p.error {
     text-align: center;
     background-color: #bf3c3c;
@@ -230,12 +242,6 @@ section.block a[href] {
   text-decoration: none; }
   section.block a[href]:hover {
     text-decoration: underline; }
-
-th {
-  text-align: left; }
-
-th + th, td + td {
-  padding-left: 20px; }
 
 @-webkit-keyframes shake {
   8%, 41% {
@@ -279,6 +285,16 @@ th + th, td + td {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center; }
+  .game .content .wrapper button {
+    margin: 16px auto;
+    width: 49%;
+    background-color: white; }
+    .game .content .wrapper button:hover {
+      background-color: #f7f7f7; }
+    .game .content .wrapper button:active {
+      background-color: #ebebeb; }
+  .game .content .wrapper .account {
+    text-align: left; }
 
 #connect-four {
   margin-top: 32px;

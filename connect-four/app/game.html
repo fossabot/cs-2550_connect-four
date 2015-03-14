@@ -22,7 +22,20 @@
 		<div class="wrapper" style="text-align:center">
 			<div>
 				<div id="connect-four"></div>
-				<button style="margin-top: 24px">Reset Board</button>
+
+				<button id="reset">Reset Board</button>
+				<button id="logout">Logout</button>
+
+				<table class="account">
+					<tr>
+						<td>Username:</td>
+						<td><span class="username"></span></td>
+					</tr>
+					<tr>
+						<td>Timestamp:</td>
+						<td><span class="timestamp"></span></td>
+					</tr>
+				</table>
 			</div>
 		</div>
 	</div>
@@ -49,6 +62,7 @@
 
 	<script src="js/views/game.js"></script>
 	<script src="js/models/game.js"></script>
+	<script src="js/models/user.js"></script>
 	<script src="js/controllers/game.js"></script>
 </body>
 </html>

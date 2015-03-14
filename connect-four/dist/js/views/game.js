@@ -4,10 +4,16 @@ define('views/game', ['view'], function(View) {
 	var GameView = View.extend({
 		initialize: function() {
 			this.game = $('#connect-four').element;
+			this.accountInfo = $('.account').element;
+
 			this.board = document.createElement('table');
 			this.game.appendChild(this.board);
-
 			this.attachMouseEventHandlers();
+		},
+
+		setUser: function(user) {
+			$('.username', this.accountInfo).text(user.username);
+			$('.timestamp', this.accountInfo).text(user.timestamp);
 		},
 
 		// creates the DOM for the board
@@ -164,10 +170,15 @@ define('views/game', ['view'], function(View) {
 				}
 			});
 
-			var button = this.game.parentNode.querySelector('button');
+			var reset = $('button#reset', this.game.parentNode).element;
+			var logout = $('button#logout', this.game.parentNode).element;
 
-			button.addEventListener('click', function(e) {
+			reset.addEventListener('click', function(e) {
 				self.emit('restart');
+			});
+
+			logout.addEventListener('click', function(e) {
+				self.emit('logout');
 			});
 		},
 

@@ -50,16 +50,22 @@ define('lib', function() {
 	var ElementDescriptor = (function() {
 		function ElementDescriptor(elements) {
 			if(elements instanceof HTMLCollection || elements instanceof Array) {
-				this.isArray = true;
-				this.elements = elements;
+				if(elements.length === 1) {
+					this.isArray = false;
+					this.element = elements[0];
+				}
+				else {
+					this.isArray = true;
+					this.elements = elements;
+				}
 			}
 			else {
-				this.element = elements;
 				this.isArray = false;
+				this.element = elements;
 			}
 		}
 
-		ElementDescriptor.prototype.setText = function(msg) {
+		ElementDescriptor.prototype.text = function(msg) {
 			var setText = function(e) {
 				e.innerHTML = msg;
 			};
@@ -126,9 +132,7 @@ define('lib', function() {
 
 	var lib = new Library();
 
-	var executor = (function(val) {
-		var obj = null;
-
+	var executor = (function(val, root) {
 		if(arguments.length === 0) {
 			return document;
 		}
@@ -137,22 +141,17 @@ define('lib', function() {
 			return;
 		}
 		else if(typeof val === "string") {
-			var element, elements;
-
-			if(val.indexOf('#') === 0) {
-				element = document.getElementById(val.substr(1));
-				obj = new ElementDescriptor(element);
+			if(root === undefined) {
+				root = document;
 			}
-			else if(val.indexOf('.') === 0) {
-				elements = document.getElementsByClassName(val.substr(1));
-				obj = new ElementDescriptor(elements);
+
+			if(root) {
+				var elements = root.querySelector(val);
+				return new ElementDescriptor(elements);
 			}
 			else {
-				elements = document.getElementsByTagName(val.substr(1));
-				obj = new ElementDescriptor(elements);
+				return new ElementDescriptor([]);
 			}
-
-			return obj;
 		}
 	}).bind(lib);
 

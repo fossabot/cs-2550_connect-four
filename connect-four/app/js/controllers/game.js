@@ -1,8 +1,9 @@
 define('controllers/game', [
 	'controller',
 	'models/game',
-	'views/game'
-], function(Controller, Model, View) {
+	'views/game',
+	'models/user'
+], function(Controller, Model, View, User) {
 	'use strict';
 
 	var GameController = Controller.extend({
@@ -11,6 +12,7 @@ define('controllers/game', [
 
 			this.data = new Model();
 			this.view = new View();
+			this.user = new User();
 
 			this.data.on('loadBoard', function(state) {
 				self.view.loadBoard(state);
@@ -42,7 +44,16 @@ define('controllers/game', [
 				self.data.restart();
 			});
 
+			this.view.on('logout', function() {
+				self.user.logout();
+				window.location.href = './';
+			});
+
 			this.data.loadSampleBoard();
+
+			if(this.user.isLoggedIn()) {
+				this.view.setUser(this.user);
+			}
 		}
 	});
 
