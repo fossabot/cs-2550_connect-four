@@ -1,12 +1,15 @@
-define('views/login', ['base'], function(Base) {
+define('views/login', ['view'], function(View) {
 	'use strict';
 
-	var LoginView = Base.extend({
+	var LoginView = View.extend({
 		initialize: function() {
 			var self = this;
 
 			this.form = $('#login').element;
-			// this.form.querySelector('input[name="username"]').focus();
+
+			if(this.getCurrentMediaQuery() === 3) {
+				this.form.querySelector('input[name="username"]').focus();
+			}
 
 			this.form.addEventListener('submit', function(e) {
 				self.events['submit login'].call(self, e);
@@ -42,11 +45,13 @@ define('views/login', ['base'], function(Base) {
 
 				password.value = '';
 
-				if(username.value === '') {
-					username.focus();
-				}
-				else {
-					password.focus();
+				if(this.getCurrentMediaQuery() === 3) {
+					if(username.value === '') {
+						username.focus();
+					}
+					else {
+						password.focus();
+					}
 				}
 
 				var container = this.form.querySelector('.error');

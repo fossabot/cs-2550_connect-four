@@ -1,4 +1,16 @@
 /* Connect Four Styles */
+.media-query-detector {
+  z-index: 0; }
+  @media screen and (min-width:761px) {
+    .media-query-detector {
+      z-index: 3; } }
+  @media screen and (max-width: 760px) {
+    .media-query-detector {
+      z-index: 2; } }
+  @media screen and (max-width: 600px) {
+    .media-query-detector {
+      z-index: 1; } }
+
 html, body {
   margin: 0px;
   padding: 0px; }

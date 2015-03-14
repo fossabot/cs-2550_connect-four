@@ -2,6 +2,23 @@
 
 $small: "screen and (max-width: 760px)";
 $small-title: "screen and (max-width: 600px)";
+$regular: "screen and (min-width:761px)";
+
+.media-query-detector {
+	z-index: 0;
+
+	@media #{$regular} {
+		z-index: 3;
+	}
+
+	@media #{$small} {
+		z-index: 2;
+	}
+
+	@media #{$small-title} {
+		z-index: 1;
+	}
+}
 
 $helvetica-neue:  "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 $helvetica-neue: "HelveticaNeue-Light", "Helvetica Neue Light", $helvetica-neue;

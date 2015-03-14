@@ -1,7 +1,7 @@
-define('models/user', ['base'], function(Base) {
+define('models/user', ['model'], function(Model) {
 	'use strict';
 
-	var User = Base.extend({
+	var User = Model.extend({
 		loginURL: 'http://universe.tc.uvu.edu/cs2550/assignments/PasswordCheck/check.php',
 
 		login: function(options, callback) {

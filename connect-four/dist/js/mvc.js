@@ -64,9 +64,20 @@ define('model', ['base'], function(Base) {
 });
 
 define('view', ['base'], function(Base) {
+	var indicator = document.createElement('div');
+	indicator.className = 'media-query-detector';
+
+	$(function() {
+		document.body.appendChild(indicator);
+	});
+
 	var View = Base.extend({
 		initialize: function() {
 
+		},
+
+		getCurrentMediaQuery: function() {
+			return parseInt(window.getComputedStyle(indicator).zIndex);
 		}
 	});
 
