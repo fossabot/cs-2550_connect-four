@@ -17,7 +17,7 @@ define('controllers/login', [
 			});
 
 			this.user.on('error', function(error) {
-				self.view.trigger('error', info);
+				self.view.trigger('error', error);
 			});
 		},
 
@@ -38,8 +38,8 @@ define('controllers/login', [
 	return LoginController;
 });
 
-$(function() {
-	require('controllers/login', function(LoginController) {
-		new LoginController();
+require(['lib', 'controllers/login'], function($, LoginController) {
+	$(function() {
+		var controller = new LoginController();
 	});
 });

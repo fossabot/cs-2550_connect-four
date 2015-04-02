@@ -1,4 +1,4 @@
-define('views/game', ['view'], function(View) {
+define('views/game', ['lib', 'view'], function($, View) {
 	'use strict';
 
 	var GameView = View.extend({

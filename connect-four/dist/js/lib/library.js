@@ -6,8 +6,8 @@ define('lib', function() {
 	}
 
 	Library.prototype.generatePolyfills = function() {
-		if(typeof HTMLCollection.prototype.forEach === 'undefined') {
-			HTMLCollection.prototype.forEach = function(func) {
+		if(typeof window.HTMLCollection.prototype.forEach === 'undefined') {
+			window.HTMLCollection.prototype.forEach = function(func) {
 				for(var i = 0; i < this.length; i++) {
 					func(this[i]);
 				}
@@ -49,7 +49,7 @@ define('lib', function() {
 
 	var ElementDescriptor = (function() {
 		function ElementDescriptor(elements) {
-			if(elements instanceof HTMLCollection || elements instanceof Array) {
+			if(elements instanceof window.HTMLCollection || elements instanceof Array) {
 				if(elements.length === 1) {
 					this.isArray = false;
 					this.element = elements[0];
@@ -173,10 +173,6 @@ define('lib', function() {
 
 	return executor;
 });
-
-// I know this kinda defeats the purpose of using require, but
-// I'm not quite ready to switch to it yet. I'm too attached to $
-window.$ = require('lib');
 
 // allow using inheritance easily
 define('extend', function() {

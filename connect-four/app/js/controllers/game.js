@@ -63,8 +63,8 @@ define('controllers/game', [
 	return GameController;
 });
 
-$(function() {
-	require('controllers/game', function(GameController) {
-		new GameController();
+require(['lib', 'controllers/game'], function($, GameController) {
+	$(function() {
+		var controller = new GameController();
 	});
 });

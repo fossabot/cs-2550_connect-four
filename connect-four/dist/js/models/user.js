@@ -31,7 +31,7 @@ define('models/user', ['model'], function(Model) {
 			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 			http.onreadystatechange = function() {
-				if(http.readyState == 4 && http.status == 200) {
+				if(http.readyState === 4 && http.status === 200) {
 					var response = JSON.parse(http.responseText);
 
 					if(response.result === 'invalid') {

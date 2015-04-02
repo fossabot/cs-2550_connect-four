@@ -63,7 +63,7 @@ define('model', ['base'], function(Base) {
 	return Model;
 });
 
-define('view', ['base'], function(Base) {
+define('view', ['lib', 'base'], function($, Base) {
 	var indicator = document.createElement('div');
 	indicator.className = 'media-query-detector';
 
@@ -77,7 +77,7 @@ define('view', ['base'], function(Base) {
 		},
 
 		getCurrentMediaQuery: function() {
-			return parseInt(window.getComputedStyle(indicator).zIndex);
+			return parseInt(window.getComputedStyle(indicator).zIndex, 10);
 		}
 	});
 

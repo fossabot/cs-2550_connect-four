@@ -1,4 +1,3 @@
-/* global $:true */
 define('controllers/login', [
 	'controller',
 	'models/user',
@@ -39,8 +38,8 @@ define('controllers/login', [
 	return LoginController;
 });
 
-$(function() {
-	require('controllers/login', function(LoginController) {
-		new LoginController();
+require(['lib', 'controllers/login'], function($, LoginController) {
+	$(function() {
+		var controller = new LoginController();
 	});
 });

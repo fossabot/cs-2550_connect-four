@@ -31,7 +31,7 @@ define('models/game', ['model'], function(Model) {
 		},
 
 		loadBoard: function(state) {
-			if(state.board.length != this.height || state.board[0].length != this.width) {
+			if(state.board.length !== this.height || state.board[0].length !== this.width) {
 				throw 'You can only restore a game that matches the dimensions used during initialization';
 			}
 

@@ -1,4 +1,4 @@
-define('views/login', ['view'], function(View) {
+define('views/login', ['lib', 'view'], function($, View) {
 	'use strict';
 
 	var LoginView = View.extend({
