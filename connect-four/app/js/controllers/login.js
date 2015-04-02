@@ -1,3 +1,4 @@
+/* global $:true */
 define('controllers/login', [
 	'controller',
 	'models/user',
@@ -17,7 +18,7 @@ define('controllers/login', [
 			});
 
 			this.user.on('error', function(error) {
-				self.view.trigger('error', info);
+				self.view.trigger('error', error);
 			});
 		},
 
