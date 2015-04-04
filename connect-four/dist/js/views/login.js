@@ -5,7 +5,7 @@ define('views/login', ['lib', 'view'], function($, View) {
 		initialize: function() {
 			var self = this;
 
-			this.form = $('#login').element;
+			this.form = $('#login')[0];
 
 			if(this.getCurrentMediaQuery() === 3) {
 				this.form.querySelector('input[name="username"]').focus();

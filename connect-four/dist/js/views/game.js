@@ -3,8 +3,8 @@ define('views/game', ['lib', 'view'], function($, View) {
 
 	var GameView = View.extend({
 		initialize: function() {
-			this.game = $('#connect-four').element;
-			this.accountInfo = $('.account').element;
+			this.game = $('#connect-four')[0];
+			this.accountInfo = $('.account')[0];
 
 			this.board = document.createElement('table');
 			this.game.appendChild(this.board);
@@ -176,8 +176,8 @@ define('views/game', ['lib', 'view'], function($, View) {
 				}
 			});
 
-			var reset = $('button#reset', this.game.parentNode).element;
-			var logout = $('button#logout', this.game.parentNode).element;
+			var reset = $('button#reset', this.game.parentNode)[0];
+			var logout = $('button#logout', this.game.parentNode)[0];
 
 			reset.addEventListener('click', function(e) {
 				self.emit('restart');
