@@ -1,177 +1,141 @@
-define('lib', function() {
+define('lib/core', function() {
 	'use strict';
 
-	function Library(val) {
-		this.generatePolyfills();
-	}
+	var root = null;
+	var ready = false;
 
-	Library.prototype.generatePolyfills = function() {
-		if(typeof window.HTMLCollection.prototype.forEach === 'undefined') {
-			window.HTMLCollection.prototype.forEach = function(func) {
-				for(var i = 0; i < this.length; i++) {
-					func(this[i]);
-				}
-			};
+	var Library = function(selector, context) {
+		return new Library.fn.init(selector, context);
+	};
+
+	Library.extend = function(target) {
+		if(!target) {
+			return null;
+		}
+
+		for(var i = 1; i < arguments.length; i++) {
+			var source = arguments[i];
+
+			for(var key in arguments[i]) {
+				target[key] = arguments[i][key];
+			}
 		}
 	};
 
-	var CallbackHandler = (function() {
-		function CallbackHandler(callback) {
-			var self = this;
+	Library.fn = Library.prototype = {
+		constructor: Library,
 
-			this.executor = function() {
-				return self.execute.call(self, this, arguments);
-			};
+		// library
 
-			this.executor.handler = this;
+		find: function(selector) {
+			return this.constructor(selector, this);
+		},
 
-			if(arguments.length === 1) {
-				this.callback = callback;
-			}
-		}
-
-		CallbackHandler.prototype = Object.create(Array.prototype);
-
-		CallbackHandler.prototype.execute = function(obj, args) {
-			var responses = [];
-
+		each: function(handler) {
 			for(var i = 0; i < this.length; i++) {
-				responses.push(this[i].apply(obj, arguments));
+				handler.call(this[i]);
 			}
 
-			if(this.callback) {
-				return this.callback(responses);
-			}
-		};
+			return this;
+		},
 
-		return CallbackHandler;
-	})();
-
-	var ElementDescriptor = (function() {
-		function ElementDescriptor(elements) {
-			if(elements instanceof window.HTMLCollection || elements instanceof Array) {
-				if(elements.length === 1) {
-					this.isArray = false;
-					this.element = elements[0];
-				}
-				else {
-					this.isArray = true;
-					this.elements = elements;
-				}
+		// events
+		ready: function(handler) {
+			if(ready) {
+				this.each(function() {
+					handler.apply(root);
+				});
 			}
 			else {
-				this.isArray = false;
-				this.element = elements;
+				window.addEventListener('load', function() {
+					handler.apply(root);
+				});
 			}
+
+			return this;
 		}
-
-		ElementDescriptor.prototype.text = function(msg) {
-			var setText = function(e) {
-				e.innerHTML = msg;
-			};
-
-			if(this.isArray) {
-				this.elements.forEach(setText);
-			}
-			else if(this.element) {
-				setText(this.element);
-			}
-		};
-
-		ElementDescriptor.prototype.remove = function() {
-			var remove = function(e) {
-				e.parentNode.removeChild(e);
-			};
-
-			if(this.isArray) {
-				this.elements.forEach(remove);
-			}
-			else if(this.element) {
-				remove(this.element);
-			}
-		};
-
-		return ElementDescriptor;
-	})();
-
-	Library.prototype.load = function(func) {
-		var handler = null;
-
-		if(!window.onload || !window.onload.handler) {
-			handler = new CallbackHandler();
-
-			if(window.onload) {
-				handler.push(window.onload);
-			}
-
-			window.onload = handler.executor;
-		}
-		else {
-			handler = window.onload.handler;
-		}
-
-		handler.push(func);
 	};
 
-	Library.prototype.beforeUnload = function(func) {
-		var handler = null;
+	Library.fn.init = function(selector, context) {
+		if(!selector) {
+			// handle empty selectors
+			return this;
+		}
 
-		if(!window.onbeforeunload || !window.onbeforeunload.handler) {
-			handler = new CallbackHandler(function(items) {
-				var messages = items.filter(function(i) {
-					return (typeof i === "string");
-				});
+		if(typeof selector === 'string') {
+			if(selector[0] === '#' && !context) {
+				// handle $(#id)
 
-				if(messages.length > 0) {
-					return messages.join('\n');
+				this[0] = document.getElementById(selector.substr(1));
+				this.length = 1;
+
+				return this;
+			}
+			else {
+				// handle $(expr, context)
+
+				if(context instanceof Library) {
+					context = context[0];
 				}
-				else {
-					return undefined;
+
+				var elements = (context || document).querySelectorAll(selector);
+
+				for(var i = 0; i < elements.length; i++) {
+					this[i] = elements[i];
 				}
+
+				this.length = this;
+
+				return this;
+			}
+		}
+		else if(selector.nodeType) {
+			// handle $(DOM Element)
+
+			this[0] = selector;
+			this.length = 1;
+
+			return this;
+		}
+		else if(typeof selector === 'function') {
+			// handle $(function)
+			return root.ready(selector);
+		}
+	};
+
+	Library.fn.init.prototype = Library.fn;
+
+	root = new Library.fn.init(document);
+
+	root.ready(function() {
+		ready = true;
+	});
+
+	return Library;
+});
+
+define('lib', ['lib/core'], function(Library) {
+	Library.extend(Library.fn, {
+		// manipulation
+
+		text: function(msg) {
+			this.each(function() {
+				this.innerText = msg;
 			});
 
-			if(window.onbeforeunload) {
-				handler.push(window.onbeforeunload);
-			}
+			return this;
+		},
 
-			window.onbeforeunload = handler.executor;
+		remove: function() {
+			this.each(function() {
+				this.parentNode.removeChild(this);
+			});
+
+			return this;
 		}
-		else {
-			handler = window.onbeforeunload.handler;
-		}
+	});
 
-		handler.push(func);
-	};
-
-	var lib = new Library();
-
-	var executor = (function(val, root) {
-		if(arguments.length === 0) {
-			return document;
-		}
-		else if(typeof val === "function") {
-			this.load(val);
-			return;
-		}
-		else if(typeof val === "string") {
-			if(root === undefined) {
-				root = document;
-			}
-
-			if(root) {
-				var elements = root.querySelector(val);
-				return new ElementDescriptor(elements);
-			}
-			else {
-				return new ElementDescriptor([]);
-			}
-		}
-	}).bind(lib);
-
-	executor.load = lib.load.bind(lib);
-	executor.beforeUnload = lib.beforeUnload.bind(lib);
-
-	return executor;
+	return Library;
 });
 
 // allow using inheritance easily

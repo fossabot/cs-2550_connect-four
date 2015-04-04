@@ -29,7 +29,7 @@ define('controllers/login', [
 					self.view.trigger('error', error);
 				}
 				else {
-					window.location.href = 'game.html';
+					window.location.href = 'index.html';
 				}
 			});
 		}
