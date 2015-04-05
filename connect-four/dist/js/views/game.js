@@ -52,6 +52,8 @@ define('views/game', ['lib', 'view'], function($, View) {
 			}
 
 			this.cells = cells;
+			
+			this.game.parentNode.classList.add('loaded');
 		},
 
 		loadBoard: function(state) {

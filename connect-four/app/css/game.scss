@@ -34,6 +34,14 @@ $black-hover-gradient: radial-gradient(50% 50% , rgba(0, 0, 0, 0.25) 75%, transp
 	.account {
 		text-align: left;
 	}
+
+	> div {
+		display: none;
+
+		&.loaded {
+			display: block;
+		}
+	}
 }
 
 #connect-four {

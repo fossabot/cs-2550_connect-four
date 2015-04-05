@@ -295,6 +295,10 @@ section.block a[href] {
       background-color: #ebebeb; }
   .game .content .wrapper .account {
     text-align: left; }
+  .game .content .wrapper > div {
+    display: none; }
+    .game .content .wrapper > div.loaded {
+      display: block; }
 
 #connect-four {
   margin-top: 32px;
