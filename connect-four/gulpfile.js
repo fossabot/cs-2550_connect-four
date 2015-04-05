@@ -71,6 +71,13 @@ gulp.task('images', function() {
 		.pipe(reload({stream:true}));
 });
 
+/* Copy JSON */
+gulp.task('images', function() {
+	return gulp.src('app/json/**/*.json')
+		.pipe(gulp.dest('dist/json/'))
+		.pipe(reload({stream:true}));
+});
+
 /* Control tasks */
 
 gulp.task('build', function(cb) {

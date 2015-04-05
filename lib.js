@@ -24,9 +24,6 @@ define('lib/core', function() {
 
 	Library.fn = Library.prototype = {
 		constructor: Library,
-
-		// library
-
 		find: function(selector) {
 			return this.constructor(selector, this);
 		},
@@ -39,12 +36,9 @@ define('lib/core', function() {
 			return this;
 		},
 
-		// events
 		ready: function(handler) {
 			if(ready) {
-				this.each(function() {
-					handler.apply(root);
-				});
+				handler.apply(root);
 			}
 			else {
 				window.addEventListener('load', function() {
@@ -84,7 +78,7 @@ define('lib/core', function() {
 					this[i] = elements[i];
 				}
 
-				this.length = this;
+				this.length = elements.length;
 
 				return this;
 			}
@@ -116,7 +110,13 @@ define('lib/core', function() {
 
 define('lib', ['lib/core'], function(Library) {
 	Library.extend(Library.fn, {
-		// manipulation
+		on: function(event, handler) {
+			this.each(function() {
+				this.addEventListener(event, function(e) {
+					handler.call(Library(this), e);
+				});
+			});
+		},
 
 		text: function(msg) {
 			this.each(function() {
@@ -132,6 +132,43 @@ define('lib', ['lib/core'], function(Library) {
 			});
 
 			return this;
+		}
+	});
+
+	Library.extend(Library, {
+		ajax: function(options) {
+			var self = this;
+			var request = new XMLHttpRequest();
+
+			request.onreadystatechange = function() {
+				if(this.readyState === 4) {
+					if(this.status >= 200 && this.status < 300) {
+						var type = this.getResponseHeader('content-type');
+						var data = this.responseText;
+
+						if(type === 'application/json') {
+							data = JSON.parse(data);
+						}
+
+						if(options.success) {
+							options.success.call(self, this, data);
+						}
+					}
+					else {
+						if(options.failure) {
+							var err = {};
+							options.failure.call(self, this, err);
+						}
+					}
+
+					if(options.always) {
+						options.always.call(self, this);
+					}
+				}
+			};
+
+			request.open(options.method || 'GET', options.url);
+			request.send();
 		}
 	});
 

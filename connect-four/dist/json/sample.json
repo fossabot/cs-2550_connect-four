@@ -1,0 +1,12 @@
+{
+	"board": [
+		[null,    null,     null,     null,     null,     null,     null   ],
+		[null,    null,     null,     null,     null,     null,     null   ],
+		[null,    null,     null,     null,     "red",    null,     null   ],
+		["red",   "red",    null,     "black",  "black",  null,     null   ],
+		["red",   "black",  "black",  "black",  "red",    "black",  null   ],
+		["red",   "black",  "red",    "red",    "black",  "black",  "red"  ]
+	],
+
+	"turn": "red"
+}

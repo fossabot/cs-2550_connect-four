@@ -1,4 +1,4 @@
-define('models/game', ['model'], function(Model) {
+define('models/game', ['lib', 'model'], function($, Model) {
 	'use strict';
 
 	var PLAYER = {
@@ -14,19 +14,15 @@ define('models/game', ['model'], function(Model) {
 		},
 
 		loadSampleBoard: function() {
-			var RED = PLAYER.RED;
-			var BLACK = PLAYER.BLACK;
+			var self = this;
 
-			this.loadBoard({
-				board: [
-					[null,  null,   null,   null,   null,   null,   null],
-					[null,  null,   null,   null,   null,   null,   null],
-					[null,  null,   null,   null,   RED,    null,   null],
-					[RED,   RED,    null,   BLACK,  BLACK,  null,   null],
-					[RED,   BLACK,  BLACK,  BLACK,  RED,    BLACK,  null],
-					[RED,   BLACK,  RED,    RED,    BLACK,  BLACK,  RED]
-				],
-				turn: RED
+			$.ajax({
+				url: '/json/sample.json',
+				method: 'GET',
+
+				success: function(xhr, data) {
+					self.loadBoard(data);
+				}
 			});
 		},
 
