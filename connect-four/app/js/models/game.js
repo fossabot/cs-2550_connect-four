@@ -17,7 +17,7 @@ define('models/game', ['lib', 'model'], function($, Model) {
 			var self = this;
 
 			$.ajax({
-				url: '/json/sample.json',
+				url: 'json/sample.json',
 				method: 'GET',
 
 				success: function(xhr, data) {
