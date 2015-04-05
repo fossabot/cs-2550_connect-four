@@ -46,7 +46,7 @@ define('controllers/game', [
 
 			this.view.on('logout', function() {
 				self.user.logout();
-				window.location.href = './';
+				window.location.href = 'login.html';
 			});
 
 			this.data.loadSampleBoard();
