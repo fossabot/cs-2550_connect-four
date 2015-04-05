@@ -72,7 +72,7 @@ gulp.task('images', function() {
 });
 
 /* Copy JSON */
-gulp.task('images', function() {
+gulp.task('json', function() {
 	return gulp.src('app/json/**/*.json')
 		.pipe(gulp.dest('dist/json/'))
 		.pipe(reload({stream:true}));
@@ -81,7 +81,7 @@ gulp.task('images', function() {
 /* Control tasks */
 
 gulp.task('build', function(cb) {
-	runSequence(['html', 'images', 'styles', 'scripts'], cb);
+	runSequence(['styles', 'scripts', 'html', 'images', 'json'], cb);
 });
 
 gulp.task('default', ['build']);
@@ -97,12 +97,13 @@ gulp.task('serve', ['watch'], function () {
 });
 
 gulp.task('watch', ['build'], function (cb) {
-	gulp.watch('app/**/*.html', ['html']);
-	gulp.watch('app/img/**/*.png', ['images']);
 	gulp.watch('app/css/**/*.scss', ['styles']);
 	gulp.watch(['../lib.js', 'app/js/**/*.js'], ['scripts']);
+	gulp.watch('app/**/*.html', ['html']);
+	gulp.watch('app/img/**/*.png', ['images']);
+	gulp.watch('app/json/**/*.json', ['json']);
 
-	if(argv._[0] == 'serve')
+	if(argv._[0] === 'serve')
 	{
 		cb();
 	}
