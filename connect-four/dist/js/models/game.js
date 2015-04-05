@@ -136,7 +136,7 @@ define('models/game', ['lib', 'model'], function($, Model) {
 				cells = [];
 
 				// center to left
-				for(x = cell.x; x < this.width; x--) {
+				for(x = cell.x; x >= 0; x--) {
 					if(!considerCell.call(this, cell.y, x)) {
 						break;
 					}
@@ -157,14 +157,14 @@ define('models/game', ['lib', 'model'], function($, Model) {
 				cells = [];
 
 				// center to top right
-				for(x = cell.x, y = cell.y; x < this.width, y < this.height; x++, y--) {
+				for(x = cell.x, y = cell.y; x < this.width, y >= 0; x++, y--) {
 					if(!considerCell.call(this, y, x)) {
 						break;
 					}
 				}
 
 				// center+{-1,1} center to bottom left
-				for(x = cell.x - 1, y = cell.y + 1; x < this.width, y < this.height; x--, y++) {
+				for(x = cell.x - 1, y = cell.y + 1; x >= 0, y < this.height; x--, y++) {
 					if(!considerCell.call(this, y, x)) {
 						break;
 					}
@@ -178,7 +178,7 @@ define('models/game', ['lib', 'model'], function($, Model) {
 				cells = [];
 
 				// center to top left
-				for(x = cell.x, y = cell.y; x < this.width, y < this.height; x--, y--) {
+				for(x = cell.x, y = cell.y; x >= 0, y >= 0; x--, y--) {
 					if(!considerCell.call(this, y, x)) {
 						break;
 					}
