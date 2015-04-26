@@ -12,7 +12,7 @@ The repository for my code is also on GitHub: [ryanp-me/cs-2550][2].
 
 Points | Requirement                                                    | Notes
 -------|----------------------------------------------------------------|-------
-10     | Documentation                                                  | No
+10     | Documentation                                                  | Does this file count?
 20     | JavaScript generated grid that uses CSS                        | [Yes][4]
 20     | User input in the form of text, select options, and/or buttons | [Yes][5]
 20     | User input in the form of mouse clicks                         | [Yes][6]
